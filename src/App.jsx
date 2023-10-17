@@ -1,23 +1,29 @@
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import './App.css'
+import assetHero from './assets/Basic Character Sprite sheet.png'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const assetRef = useRef()
+  const [assetWidth, setAssetWidth] = useState()
 
   return (
-    <div className="App">
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
+    <div className='app'>
+      <div className='app--center'>
+        <div className='app__image'>
+          <img
+            onLoad={() => {
+              setAssetWidth(assetRef.current.offsetWidth)
+            }}
+            ref={assetRef}
+            style={{
+              width: `calc(${assetWidth}px * var(--zoom-level))`,
+              transform: `translate(calc(-1 * var(--tile-size)), calc(-1 * var(--tile-size)))`,
+            }}
+            src={assetHero}
+            alt="assetHero"
+          />
+        </div>
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
     </div>
   )
 }
