@@ -1,0 +1,14 @@
+.guide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: max-content;
+}
+
+.guide__tile {
+  width: var(--tile-size);
+  height: var(--tile-size);
+  background-color: rgba(0, 0, 255, 0.25);
+  border: var(--border-size) solid white;
+  display: inline-block;
+}

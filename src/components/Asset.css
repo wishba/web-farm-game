@@ -1,0 +1,5 @@
+.asset {
+  width: var(--tile-size);
+  height: var(--tile-size);
+  overflow: hidden;
+}

@@ -1,6 +1,7 @@
 :root {
   --zoom-level: 5;
   --tile-size: calc(16px * var(--zoom-level));
+  --border-size: calc(.5px * var(--zoom-level));
 }
 
 * {

@@ -5,12 +5,5 @@
 .app--center {
   width: 100vw;
   height: 100vh;
-  transform: translate(50%, 50%);
-}
-
-.app__image {
-  width: var(--tile-size);
-  height: var(--tile-size);
-  overflow: hidden;
-  transform: translate(-50%, -50%);
+  transform: translate(calc(50% - (var(--tile-size) / 2)), calc(50% - (var(--tile-size) / 2)));
 }
