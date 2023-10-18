@@ -18,6 +18,7 @@ function Guide() {
         translate(
           calc(${Math.floor(tileDimension[0] / 2)} * var(--tile-size) * -1),
           calc(${Math.floor(tileDimension[1] / 2)} * var(--tile-size) * -1)
+        )
       `
     }}>{guideArray}</div>
   )

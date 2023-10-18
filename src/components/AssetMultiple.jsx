@@ -1,15 +1,7 @@
 import React from 'react'
 import Asset from './Asset'
 
-function AssetMultiple({ asset }) {
-  const position = [
-    [1, 0], [2, 0],
-    [1, 1], [2, 1]
-  ]
-  const tile = [
-    [3, 0], [4, 0],
-    [3, 1], [4, 1]
-  ]
+function AssetMultiple({ asset, position, tile }) {
   const assetArray = []
 
   for (let index = 0; index < position.length; index++) {
@@ -19,9 +11,7 @@ function AssetMultiple({ asset }) {
   }
 
   return (
-    <div>
-      {assetArray}
-    </div>
+    <div>{assetArray}</div>
   )
 }
 
