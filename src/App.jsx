@@ -51,57 +51,39 @@ function App() {
       </div>
 
       <div className='app__hero'>
-        <div className='app--centering'>
-          <Asset asset={assetHero} position={[0, 0]} tile={[1, 1]} />
-        </div>
+        <Asset asset={assetHero} position={[0, 0]} tile={[1, 1]} />
       </div>
 
       <div className='app__button'>
         <button
-          onMouseDown={() => {
-            startWalking('up')
-          }}
+          onMouseDown={() => startWalking('up')}
           onMouseUp={stopWalking}
           onMouseLeave={stopWalking}
-          onTouchStart={() => {
-            startWalking('up')
-          }}
+          onTouchStart={() => startWalking('up')}
           onTouchEnd={stopWalking}
         >up</button>
 
         <button
-          onMouseDown={() => {
-            startWalking('left')
-          }}
+          onMouseDown={() => startWalking('left')}
           onMouseUp={stopWalking}
           onMouseLeave={stopWalking}
-          onTouchStart={() => {
-            startWalking('left')
-          }}
+          onTouchStart={() => startWalking('left')}
           onTouchEnd={stopWalking}
         >left</button>
 
         <button
-          onMouseDown={() => {
-            startWalking('right')
-          }}
+          onMouseDown={() => startWalking('right')}
           onMouseUp={stopWalking}
           onMouseLeave={stopWalking}
-          onTouchStart={() => {
-            startWalking('right')
-          }}
+          onTouchStart={() => startWalking('right')}
           onTouchEnd={stopWalking}
         >right</button>
 
         <button
-          onMouseDown={() => {
-            startWalking('down')
-          }}
+          onMouseDown={() => startWalking('down')}
           onMouseUp={stopWalking}
           onMouseLeave={stopWalking}
-          onTouchStart={() => {
-            startWalking('down')
-          }}
+          onTouchStart={() => startWalking('down')}
           onTouchEnd={stopWalking}
         >down</button>
       </div>

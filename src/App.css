@@ -8,14 +8,11 @@
 
 .app__hero {
   position: absolute;
-  top: 0;
-  overflow: hidden;
-}
-
-.app--centering {
-  width: 100vw;
-  height: 100vh;
-  transform: translate(calc(50% - (var(--tile-size) / 2)), calc(50% - (var(--tile-size) / 2)));
+  top: calc(50% - (var(--tile-size) / 2));
+  left: calc(50% - (var(--tile-size) / 2));
+  border: var(--border-size) solid red;
+  width: var(--tile-size);
+  height: var(--tile-size);
 }
 
 .app__button {
