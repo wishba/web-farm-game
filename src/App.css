@@ -2,8 +2,23 @@
   overflow: hidden;
 }
 
-.app--center {
+.app__guide {
+  position: absolute;
+}
+
+.app__hero {
+  position: absolute;
+  top: 0;
+  overflow: hidden;
+}
+
+.app--centering {
   width: 100vw;
   height: 100vh;
   transform: translate(calc(50% - (var(--tile-size) / 2)), calc(50% - (var(--tile-size) / 2)));
+}
+
+.app__button {
+  position: absolute;
+  bottom: 0;
 }

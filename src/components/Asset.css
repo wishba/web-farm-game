@@ -3,5 +3,4 @@
   height: var(--tile-size);
   overflow: hidden;
   position: absolute;
-  z-index: 1;
 }
