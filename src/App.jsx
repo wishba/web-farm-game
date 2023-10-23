@@ -17,13 +17,13 @@ function App() {
       setCoordinate(previousCoordinate => {
         switch (direction) {
           case 'right':
-            return [previousCoordinate[0] - 1, previousCoordinate[1]]
-          case 'left':
             return [previousCoordinate[0] + 1, previousCoordinate[1]]
+          case 'left':
+            return [previousCoordinate[0] - 1, previousCoordinate[1]]
           case 'down':
-            return [previousCoordinate[0], previousCoordinate[1] - 1]
-          case 'up':
             return [previousCoordinate[0], previousCoordinate[1] + 1]
+          case 'up':
+            return [previousCoordinate[0], previousCoordinate[1] - 1]
         }
       })
     }, 30)
@@ -35,19 +35,23 @@ function App() {
 
   return (
     <div className='app'>
-      <div className='app__guide'>{coordinate[0]}/{coordinate[1]}</div>
+      <div className='app__guide'>
+        {coordinate[0]}/{coordinate[1]}
+        |
+        {Math.round(coordinate[0] / 60)}/{Math.round(coordinate[1] / 60)}
+      </div>
 
       <div style={{
         width: '100vw',
         height: '100vh',
         transform: `translate(
-          calc(50% - (var(--tile-size) / 2) + ${coordinate[0]}px), 
-          calc(50% - (var(--tile-size) / 2) + ${coordinate[1]}px)
+          calc(50% - (var(--tile-size) / 2) + ${coordinate[0] * -1}px), 
+          calc(50% - (var(--tile-size) / 2) + ${coordinate[1] * -1}px)
         )`,
       }}>
         <AssetMultiple asset={assetGround} position={data.ground.position} tile={data.ground.tile} />
         <AssetMultiple asset={assetTree} position={data.tree.position} tile={data.tree.tile} />
-        <Guide />
+        <Guide tileDimension={[7, 9]} />
       </div>
 
       <div className='app__hero'>
