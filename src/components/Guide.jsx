@@ -1,8 +1,7 @@
 import React from 'react'
 import './Guide.css'
 
-function Guide() {
-  const tileDimension = [7, 7]
+function Guide({ tileDimension }) {
   const guideArray = []
 
   for (let indexY = 0; indexY < tileDimension[1]; indexY++) {
