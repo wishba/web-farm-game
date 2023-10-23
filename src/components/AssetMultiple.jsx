@@ -6,7 +6,7 @@ function AssetMultiple({ asset, position, tile }) {
 
   for (let index = 0; index < position.length; index++) {
     assetArray.push(
-      <Asset key={index} asset={asset} position={position[index]} tile={tile[index]} />
+      <Asset key={index} asset={asset} position={position[index]} tile={tile.length == 0 ? [0, 0] : tile[index]} />
     )
   }
 

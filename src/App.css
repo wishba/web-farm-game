@@ -6,13 +6,17 @@
   position: absolute;
 }
 
+.app__wall * {
+  background-color: rgba(255, 0, 0, 0.125);
+}
+
 .app__hero {
   position: absolute;
   top: calc(50% - (var(--tile-size) / 2));
   left: calc(50% - (var(--tile-size) / 2));
-  border: var(--border-size) solid red;
   width: var(--tile-size);
   height: var(--tile-size);
+  transform: translateY(calc(var(--tile-size) / -2));
 }
 
 .app__button {
