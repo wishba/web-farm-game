@@ -83,8 +83,12 @@ function App() {
         </div>
       </div>
 
-      <div className='app__hero'>
-        <Asset asset={assetHero} position={[0, 0]} tile={[1, 1]} />
+      <div className='app__hero--container' style={{
+        border: 'var(--border-size) solid green'
+      }}>
+        <div className='app__hero'>
+          <Asset asset={assetHero} position={[0, 0]} tile={[1, 1]} />
+        </div>
       </div>
 
       <div className='app__button'>

@@ -10,12 +10,15 @@
   background-color: rgba(255, 0, 0, 0.125);
 }
 
-.app__hero {
+.app__hero--container {
   position: absolute;
   top: calc(50% - (var(--tile-size) / 2));
   left: calc(50% - (var(--tile-size) / 2));
   width: var(--tile-size);
   height: var(--tile-size);
+}
+
+.app__hero {
   transform: translateY(calc(var(--tile-size) / -2));
 }
 
