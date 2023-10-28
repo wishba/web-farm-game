@@ -9,6 +9,7 @@ import assetGround from './assets/Grass.png'
 import { useEffect, useRef, useState } from 'react'
 
 function App() {
+  const [isDebugging, setIsDebugging] = useState(false)
   const [coordinate, setCoordinate] = useState([0, 0])
   const walkingRef = useRef()
   const [facing, setFacing] = useState('down')
@@ -59,13 +60,31 @@ function App() {
     }
   }, [coordinate])
 
+
+  useEffect(() => {
+    const handleKeyPress = (e) => {
+      if (e.key === '`') {
+        setIsDebugging((prev) => !prev)
+      }
+    }
+
+    window.addEventListener('keydown', handleKeyPress)
+
+    return () => {
+      window.removeEventListener('keydown', handleKeyPress)
+    }
+  }, [])
+
+
   return (
     <div className='app'>
-      <div className='app__guide'>
-        {coordinate[0]}/{coordinate[1]}|
-        {coordinateTile[0]}/{coordinateTile[1]}|
-        {facing}
-      </div>
+      {isDebugging && (
+        <div className='app__guide'>
+          {coordinate[0]}/{coordinate[1]}|
+          {coordinateTile[0]}/{coordinateTile[1]}|
+          {facing}
+        </div>
+      )}
 
       <div style={{
         width: '100vw',
@@ -77,14 +96,19 @@ function App() {
       }}>
         <AssetMultiple asset={assetGround} position={data.ground.position} tile={data.ground.tile} />
         <AssetMultiple asset={assetTree} position={data.tree.position} tile={data.tree.tile} />
-        <Guide tileDimension={[7, 9]} />
-        <div className='app__wall'>
-          <AssetMultiple asset={assetHero} position={data.wall.position} tile={data.wall.tile} />
-        </div>
+
+        {isDebugging && (
+          <div>
+            <Guide tileDimension={[7, 9]} />
+            <div className='app__wall'>
+              <AssetMultiple asset={assetHero} position={data.wall.position} tile={data.wall.tile} />
+            </div>
+          </div>
+        )}
       </div>
 
       <div className='app__hero--container' style={{
-        border: 'var(--border-size) solid green'
+        border: isDebugging && 'var(--border-size) solid green'
       }}>
         <div className='app__hero'>
           <Asset asset={assetHero} position={[0, 0]} tile={[1, 1]} />
