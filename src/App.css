@@ -6,16 +6,20 @@
   position: absolute;
 }
 
-.app__hero--container {
+.app__hero {
   position: absolute;
   top: calc(50% - (var(--tile-size) / 2));
   left: calc(50% - (var(--tile-size) / 2));
   width: var(--tile-size);
   height: var(--tile-size);
+  transform: translateY(calc(var(--tile-size) / -2));
 }
 
-.app__hero {
-  transform: translateY(calc(var(--tile-size) / -2));
+.app__hero--border {
+  width: var(--tile-size);
+  height: var(--tile-size);
+  border: var(--border-size) solid green;
+  transform: translateY(calc(var(--tile-size) / 2));
 }
 
 .app__button {
