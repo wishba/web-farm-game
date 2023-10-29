@@ -4,3 +4,9 @@
   overflow: hidden;
   position: absolute;
 }
+
+.asset__empty {
+  background-color: rgba(255, 0, 0, 0.125);
+  width: var(--tile-size);
+  height: var(--tile-size);
+}

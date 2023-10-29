@@ -105,9 +105,7 @@ function App() {
         {isDebugging && (
           <div>
             <Guide tileDimension={[7, 9]} />
-            <div className='app__wall'>
-              <AssetMultiple asset={assetHero} position={data.wall.position} tile={data.wall.tile} />
-            </div>
+            <AssetMultiple asset={''} position={data.wall.position} tile={data.wall.tile} />
           </div>
         )}
       </div>

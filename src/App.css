@@ -6,10 +6,6 @@
   position: absolute;
 }
 
-.app__wall * {
-  background-color: rgba(255, 0, 0, 0.125);
-}
-
 .app__hero--container {
   position: absolute;
   top: calc(50% - (var(--tile-size) / 2));
