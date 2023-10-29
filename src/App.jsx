@@ -11,8 +11,9 @@ import { useEffect, useRef, useState } from 'react'
 function App() {
   const [isDebugging, setIsDebugging] = useState(false)
   const [coordinate, setCoordinate] = useState([0, 0])
-  const walkingRef = useRef()
   const [facing, setFacing] = useState('down')
+  const [tes, setTes] = useState()
+  const walkingRef = useRef()
 
   const coordinateTile = [Math.round(coordinate[0] / 80), Math.round(coordinate[1] / 80)]
 
@@ -62,6 +63,9 @@ function App() {
 
 
   useEffect(() => {
+    localStorage.setItem('tesData', 'tesss')
+    setTes(localStorage.getItem('tesData'))
+
     const handleKeyPress = (e) => {
       if (e.key === '`') {
         setIsDebugging((prev) => !prev)
@@ -75,9 +79,10 @@ function App() {
     }
   }, [])
 
-
   return (
     <div className='app'>
+      <p style={{ position: 'absolute' }}>{tes}</p>
+
       {isDebugging && (
         <div className='app__guide'>
           {coordinate[0]}/{coordinate[1]}|
