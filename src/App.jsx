@@ -72,10 +72,10 @@ function App() {
   }, [coordinate])
 
   useEffect(() => {
-    for (const treeBorder of data.treeBorder.position) {
+    for (const treeFruit of data.treeFruit.position) {
       if (
-        treeBorder[0] === coordinateTile[0] &&
-        treeBorder[1] === coordinateTile[1] &&
+        treeFruit[0] === coordinateTile[0] &&
+        treeFruit[1] === coordinateTile[1] &&
         isAPressed === true
       ) {
         if (countTreeTop === data.treeTop0.tile && countTreeBottom === data.treeBottom0.tile) {
