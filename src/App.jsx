@@ -35,7 +35,7 @@ function App() {
             return [previousCoordinate[0], previousCoordinate[1] - 1]
         }
       })
-    }, 20)
+    }, 15)
   }
 
   const stopWalking = () => {
@@ -99,21 +99,29 @@ function App() {
           calc(50% - (var(--tile-size) / 2) + ${coordinate[1] * -1}px)
         )`,
       }}>
-        <AssetMultiple asset={assetGround} position={data.ground.position} tile={data.ground.tile} />
-        <AssetMultiple asset={assetTree} position={data.tree.position} tile={data.tree.tile} />
+        <AssetMultiple asset={assetGround} position={data.ground.position} tile={data.ground.tile} zIndex={-99} />
+        <AssetMultiple asset={assetTree} position={data.treeTop.position} tile={data.treeTop.tile} zIndex={1} />
+        <AssetMultiple asset={assetTree} position={data.treeBottom.position} tile={data.treeBottom.tile} zIndex={-1} />
+
+        <div style={{
+          position: 'absolute',
+          zIndex: '0',
+          transform: `translate(
+            ${coordinate[0]}px, 
+            calc(${coordinate[1]}px - (var(--tile-size) / 2))
+          )`,
+        }}>
+          <Asset asset={assetHero} position={[[0, 0]]} tile={[1, 1]} />
+          {isDebugging && (
+            <div className='app__hero--border'></div>
+          )}
+        </div>
 
         {isDebugging && (
           <div>
             <Guide tileDimension={[7, 9]} />
             <AssetMultiple asset={''} position={data.wall.position} tile={data.wall.tile} />
           </div>
-        )}
-      </div>
-
-      <div className='app__hero'>
-        <Asset asset={assetHero} position={[[0, 0]]} tile={[1, 1]} />
-        {isDebugging && (
-          <div className='app__hero--border'></div>
         )}
       </div>
 

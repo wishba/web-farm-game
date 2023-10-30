@@ -1,7 +1,7 @@
 import React from 'react'
 import Asset from './Asset'
 
-function AssetMultiple({ asset, position, tile }) {
+function AssetMultiple({ asset, position, tile, zIndex }) {
   const assetArray = []
 
   for (let index = 0; index < position.length; index++) {
@@ -11,7 +11,10 @@ function AssetMultiple({ asset, position, tile }) {
   }
 
   return (
-    <div>{assetArray}</div>
+    <div style={{
+      position: 'absolute',
+      zIndex: `${zIndex}`,
+    }}>{assetArray}</div>
   )
 }
 
