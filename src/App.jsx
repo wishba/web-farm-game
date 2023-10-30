@@ -13,8 +13,10 @@ function App() {
   const [coordinate, setCoordinate] = useState([0, 0])
   const [facing, setFacing] = useState('down')
   const [tes, setTes] = useState()
+  const [countTreeTop, setCountTreeTop] = useState(data.treeTop0.tile)
+  const [countTreeBottom, setCountTreeBottom] = useState(data.treeBottom0.tile)
+  const [isAPressed, setIsAPressed] = useState(false)
   const walkingRef = useRef()
-
   const coordinateTile = [Math.round(coordinate[0] / 80), Math.round(coordinate[1] / 80)]
 
   const startWalking = (direction) => {
@@ -42,6 +44,14 @@ function App() {
     clearInterval(walkingRef.current)
   }
 
+  const handleStartA = () => {
+    setIsAPressed(true)
+  }
+
+  const handleStopA = () => {
+    setIsAPressed(false)
+  }
+
   useEffect(() => {
     for (const wall of data.wall.position) {
       if (wall[0] === coordinateTile[0] && wall[1] === coordinateTile[1]) {
@@ -60,6 +70,29 @@ function App() {
       }
     }
   }, [coordinate])
+
+  useEffect(() => {
+    for (const treeBorder of data.treeBorder.position) {
+      if (
+        treeBorder[0] === coordinateTile[0] &&
+        treeBorder[1] === coordinateTile[1] &&
+        isAPressed === true
+      ) {
+        if (countTreeTop === data.treeTop0.tile && countTreeBottom === data.treeBottom0.tile) {
+          console.log('0');
+        }
+        if (countTreeTop === data.treeTop1.tile && countTreeBottom === data.treeBottom1.tile) {
+          console.log('1');
+        }
+        if (countTreeTop === data.treeTop2.tile && countTreeBottom === data.treeBottom2.tile) {
+          console.log('2');
+        }
+        if (countTreeTop === data.treeTop3.tile && countTreeBottom === data.treeBottom3.tile) {
+          console.log('3');
+        }
+      }
+    }
+  }, [coordinate, isAPressed])
 
 
   useEffect(() => {
@@ -100,8 +133,8 @@ function App() {
         )`,
       }}>
         <AssetMultiple asset={assetGround} position={data.ground.position} tile={data.ground.tile} zIndex={-99} />
-        <AssetMultiple asset={assetTree} position={data.treeTop.position} tile={data.treeTop.tile} zIndex={1} />
-        <AssetMultiple asset={assetTree} position={data.treeBottom.position} tile={data.treeBottom.tile} zIndex={-1} />
+        <AssetMultiple asset={assetTree} position={data.treeTop.position} tile={countTreeTop} zIndex={1} />
+        <AssetMultiple asset={assetTree} position={data.treeBottom.position} tile={countTreeBottom} zIndex={-1} />
 
         <div style={{
           position: 'absolute',
@@ -157,6 +190,14 @@ function App() {
           onTouchStart={() => startWalking('down')}
           onTouchEnd={stopWalking}
         >down</button>
+
+        <button
+          onMouseDown={() => handleStartA()}
+          onMouseUp={() => handleStopA()}
+          onMouseLeave={() => handleStopA()}
+          onTouchStart={() => handleStartA()}
+          onTouchEnd={() => handleStopA()}
+        >a</button>
       </div>
     </div>
   )
