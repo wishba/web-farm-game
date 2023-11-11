@@ -12,7 +12,7 @@ function App() {
   const [isDebugging, setIsDebugging] = useState(false)
   const [coordinate, setCoordinate] = useState([0, 0])
   const [facing, setFacing] = useState('down')
-  const [tes, setTes] = useState()
+  const [inventory, setInventory] = useState()
   const [countTreeTop, setCountTreeTop] = useState(data.treeTop0.tile)
   const [countTreeBottom, setCountTreeBottom] = useState(data.treeBottom0.tile)
   const [isAPressed, setIsAPressed] = useState(false)
@@ -96,8 +96,8 @@ function App() {
 
 
   useEffect(() => {
-    localStorage.setItem('tesData', 'tesss')
-    setTes(localStorage.getItem('tesData'))
+    localStorage.setItem('fruit', 0)
+    setInventory(localStorage.getItem('fruit'))
 
     const handleKeyPress = (e) => {
       if (e.key === '`') {
@@ -114,7 +114,14 @@ function App() {
 
   return (
     <div className='app'>
-      <p style={{ position: 'absolute' }}>{tes}</p>
+      <div style={{
+        position: 'absolute',
+        right: '0',
+        textAlign: 'right',
+      }}>
+        <p>inventory</p>
+        <p>fruit: {inventory}</p>
+      </div>
 
       {isDebugging && (
         <div className='app__guide'>
