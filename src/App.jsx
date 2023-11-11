@@ -12,9 +12,9 @@ function App() {
   const [isDebugging, setIsDebugging] = useState(false)
   const [coordinate, setCoordinate] = useState([0, 0])
   const [facing, setFacing] = useState('down')
-  const [inventory, setInventory] = useState()
-  const [countTreeTop, setCountTreeTop] = useState(data.treeTop0.tile)
-  const [countTreeBottom, setCountTreeBottom] = useState(data.treeBottom0.tile)
+  const [inventory, setInventory] = useState(parseInt(localStorage.getItem('fruit')) || 0)
+  const [countTreeTop, setCountTreeTop] = useState(data.treeTop1.tile)
+  const [countTreeBottom, setCountTreeBottom] = useState(data.treeBottom1.tile)
   const [isAPressed, setIsAPressed] = useState(false)
   const walkingRef = useRef()
   const coordinateTile = [Math.round(coordinate[0] / 80), Math.round(coordinate[1] / 80)]
@@ -82,7 +82,8 @@ function App() {
           console.log('0');
         }
         if (countTreeTop === data.treeTop1.tile && countTreeBottom === data.treeBottom1.tile) {
-          console.log('1');
+          setInventory(inventory + 1)
+          localStorage.setItem('fruit', inventory + 1)
         }
         if (countTreeTop === data.treeTop2.tile && countTreeBottom === data.treeBottom2.tile) {
           console.log('2');
@@ -96,9 +97,6 @@ function App() {
 
 
   useEffect(() => {
-    localStorage.setItem('fruit', 0)
-    setInventory(localStorage.getItem('fruit'))
-
     const handleKeyPress = (e) => {
       if (e.key === '`') {
         setIsDebugging((prev) => !prev)
