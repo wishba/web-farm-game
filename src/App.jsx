@@ -4,17 +4,15 @@ import Guide from './components/Guide'
 import Asset from './components/Asset'
 import AssetMultiple from './components/AssetMultiple'
 import assetHero from './assets/Basic Character Sprite sheet.png'
-import assetTree from './assets/Basic Grass Biome things 1.png'
 import assetGround from './assets/Grass.png'
 import { useEffect, useRef, useState } from 'react'
+import ObjectTree from './components/ObjectTree'
 
 function App() {
   const [isDebugging, setIsDebugging] = useState(false)
   const [coordinate, setCoordinate] = useState([0, 0])
   const [facing, setFacing] = useState('down')
   const [inventory, setInventory] = useState(parseInt(localStorage.getItem('fruit')) || 0)
-  const [countTreeTop, setCountTreeTop] = useState(data.treeTop1.tile)
-  const [countTreeBottom, setCountTreeBottom] = useState(data.treeBottom1.tile)
   const [isAPressed, setIsAPressed] = useState(false)
   const walkingRef = useRef()
   const coordinateTile = [Math.round(coordinate[0] / 80), Math.round(coordinate[1] / 80)]
@@ -78,23 +76,11 @@ function App() {
         treeFruit[1] === coordinateTile[1] &&
         isAPressed === true
       ) {
-        if (countTreeTop === data.treeTop0.tile && countTreeBottom === data.treeBottom0.tile) {
-          console.log('0');
-        }
-        if (countTreeTop === data.treeTop1.tile && countTreeBottom === data.treeBottom1.tile) {
-          setInventory(inventory + 1)
-          localStorage.setItem('fruit', inventory + 1)
-        }
-        if (countTreeTop === data.treeTop2.tile && countTreeBottom === data.treeBottom2.tile) {
-          console.log('2');
-        }
-        if (countTreeTop === data.treeTop3.tile && countTreeBottom === data.treeBottom3.tile) {
-          console.log('3');
-        }
+        setInventory(inventory + 1)
+        localStorage.setItem('fruit', inventory + 1)
       }
     }
   }, [coordinate, isAPressed])
-
 
   useEffect(() => {
     const handleKeyPress = (e) => {
@@ -138,8 +124,7 @@ function App() {
         )`,
       }}>
         <AssetMultiple asset={assetGround} position={data.ground.position} tile={data.ground.tile} zIndex={-99} />
-        <AssetMultiple asset={assetTree} position={data.treeTop.position} tile={countTreeTop} zIndex={1} />
-        <AssetMultiple asset={assetTree} position={data.treeBottom.position} tile={countTreeBottom} zIndex={-1} />
+        <ObjectTree treeState={3} />
 
         <div style={{
           position: 'absolute',
