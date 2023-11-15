@@ -13,7 +13,7 @@ function App() {
   const [coordinate, setCoordinate] = useState([0, 0])
   const [facing, setFacing] = useState('down')
   const [inventory, setInventory] = useState(parseInt(localStorage.getItem('fruit')) || 0)
-  const [isAPressed, setIsAPressed] = useState(false)
+  const [treeState, setTreeState] = useState(3)
   const walkingRef = useRef()
   const coordinateTile = [Math.round(coordinate[0] / 80), Math.round(coordinate[1] / 80)]
 
@@ -42,12 +42,18 @@ function App() {
     clearInterval(walkingRef.current)
   }
 
-  const handleStartA = () => {
-    setIsAPressed(true)
-  }
-
-  const handleStopA = () => {
-    setIsAPressed(false)
+  const handleClickA = () => {
+    for (const treeFruit of data.treeFruit.position) {
+      if (
+        treeFruit[0] === coordinateTile[0] &&
+        treeFruit[1] === coordinateTile[1] &&
+        treeState > 0
+      ) {
+        setInventory(inventory + 1)
+        localStorage.setItem('fruit', inventory + 1)
+        setTreeState(treeState - 1)
+      }
+    }
   }
 
   useEffect(() => {
@@ -68,19 +74,6 @@ function App() {
       }
     }
   }, [coordinate])
-
-  useEffect(() => {
-    for (const treeFruit of data.treeFruit.position) {
-      if (
-        treeFruit[0] === coordinateTile[0] &&
-        treeFruit[1] === coordinateTile[1] &&
-        isAPressed === true
-      ) {
-        setInventory(inventory + 1)
-        localStorage.setItem('fruit', inventory + 1)
-      }
-    }
-  }, [coordinate, isAPressed])
 
   useEffect(() => {
     const handleKeyPress = (e) => {
@@ -124,7 +117,7 @@ function App() {
         )`,
       }}>
         <AssetMultiple asset={assetGround} position={data.ground.position} tile={data.ground.tile} zIndex={-99} />
-        <ObjectTree treeState={3} />
+        <ObjectTree treeState={treeState} />
 
         <div style={{
           position: 'absolute',
@@ -182,11 +175,7 @@ function App() {
         >down</button>
 
         <button
-          onMouseDown={() => handleStartA()}
-          onMouseUp={() => handleStopA()}
-          onMouseLeave={() => handleStopA()}
-          onTouchStart={() => handleStartA()}
-          onTouchEnd={() => handleStopA()}
+          onClick={() => handleClickA()}
         >a</button>
       </div>
     </div>
