@@ -91,54 +91,17 @@ function App() {
 
   return (
     <div className='app'>
-      <div style={{
-        position: 'absolute',
-        right: '0',
-        textAlign: 'right',
-      }}>
-        <p>inventory</p>
-        <p>fruit: {inventory}</p>
-      </div>
-
       {isDebugging && (
-        <div className='app__guide'>
+        <div className='app__debug'>
           {coordinate[0]}/{coordinate[1]}|
           {coordinateTile[0]}/{coordinateTile[1]}|
           {facing}
         </div>
       )}
 
-      <div style={{
-        width: '100vw',
-        height: '100vh',
-        transform: `translate(
-          calc(50% - (var(--tile-size) / 2) + ${coordinate[0] * -1}px), 
-          calc(50% - (var(--tile-size) / 2) + ${coordinate[1] * -1}px)
-        )`,
-      }}>
-        <AssetMultiple asset={assetGround} position={data.ground.position} tile={data.ground.tile} zIndex={-99} />
-        <ObjectTree treeState={treeState} />
-
-        <div style={{
-          position: 'absolute',
-          zIndex: '0',
-          transform: `translate(
-            ${coordinate[0]}px, 
-            calc(${coordinate[1]}px - (var(--tile-size) / 2))
-          )`,
-        }}>
-          <Asset asset={assetHero} position={[[0, 0]]} tile={[1, 1]} />
-          {isDebugging && (
-            <div className='app__hero--border'></div>
-          )}
-        </div>
-
-        {isDebugging && (
-          <div>
-            <Guide tileDimension={[7, 9]} />
-            <AssetMultiple asset={''} position={data.wall.position} tile={data.wall.tile} />
-          </div>
-        )}
+      <div className='app__inventory'>
+        <p>inventory</p>
+        <p>fruit: {inventory}</p>
       </div>
 
       <div className='app__button'>
@@ -177,6 +140,39 @@ function App() {
         <button
           onClick={() => handleClickA()}
         >a</button>
+      </div>
+
+      <div style={{
+        width: '100vw',
+        height: '100vh',
+        transform: `translate(
+          calc(50% - (var(--tile-size) / 2) + ${coordinate[0] * -1}px), 
+          calc(50% - (var(--tile-size) / 2) + ${coordinate[1] * -1}px)
+        )`,
+      }}>
+        <AssetMultiple asset={assetGround} position={data.ground.position} tile={data.ground.tile} zIndex={-99} />
+        <ObjectTree treeState={treeState} />
+
+        <div style={{
+          position: 'absolute',
+          zIndex: '0',
+          transform: `translate(
+            ${coordinate[0]}px, 
+            calc(${coordinate[1]}px - (var(--tile-size) / 2))
+          )`,
+        }}>
+          <Asset asset={assetHero} position={[[0, 0]]} tile={[1, 1]} />
+          {isDebugging && (
+            <div className='app__debug--hero'></div>
+          )}
+        </div>
+
+        {isDebugging && (
+          <div>
+            <Guide tileDimension={[7, 9]} />
+            <AssetMultiple asset={''} position={data.wall.position} tile={data.wall.tile} />
+          </div>
+        )}
       </div>
     </div>
   )

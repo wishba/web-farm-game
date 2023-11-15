@@ -3,27 +3,25 @@
   background-color: white;
 }
 
-.app__guide {
+.app__debug {
   position: absolute;
+  right: 0;
 }
 
-.app__hero {
-  position: absolute;
-  top: calc(50% - (var(--tile-size) / 2));
-  left: calc(50% - (var(--tile-size) / 2));
-  width: var(--tile-size);
-  height: var(--tile-size);
-  transform: translateY(calc(var(--tile-size) / -2));
-}
-
-.app__hero--border {
+.app__debug--hero {
   width: var(--tile-size);
   height: var(--tile-size);
   border: var(--border-size) solid green;
   transform: translateY(calc(var(--tile-size) / 2));
 }
 
+.app__inventory {
+  position: absolute;
+}
+
 .app__button {
   position: absolute;
+  z-index: 999;
   bottom: 0;
+  right: 0;
 }
