@@ -5,6 +5,7 @@ import Asset from './components/Asset'
 import AssetMultiple from './components/AssetMultiple'
 import assetHero from './assets/Basic Character Sprite sheet.png'
 import assetGround from './assets/Grass.png'
+import assetButton from './assets/Sprite sheet for Basic Pack.png'
 import { useEffect, useRef, useState } from 'react'
 import ObjectTree from './components/ObjectTree'
 
@@ -16,6 +17,11 @@ function App() {
   const [treeState, setTreeState] = useState(3)
   const walkingRef = useRef()
   const coordinateTile = [Math.round(coordinate[0] / 80), Math.round(coordinate[1] / 80)]
+  const styleButton = {
+    width: 'var(--tile-size)',
+    height: 'var(--tile-size)',
+    opacity: isDebugging ? '0.5' : '0',
+  }
 
   const startWalking = (direction) => {
     walkingRef.current = setInterval(() => {
@@ -99,47 +105,75 @@ function App() {
         </div>
       )}
 
-      <div className='app__inventory'>
+      <div className='app__status'>
         <p>inventory</p>
         <p>fruit: {inventory}</p>
       </div>
 
-      <div className='app__button'>
-        <button
-          onMouseDown={() => startWalking('up')}
-          onMouseUp={stopWalking}
-          onMouseLeave={stopWalking}
-          onTouchStart={() => startWalking('up')}
-          onTouchEnd={stopWalking}
-        >up</button>
+      <div className='app__button--container'>
+        <div className='app__button app__button--up'>
+          <Asset asset={assetButton} position={[0, 0]} tile={[17, 4]} />
+          <button
+            style={styleButton}
+            onMouseDown={() => startWalking('up')}
+            onMouseUp={stopWalking}
+            onMouseLeave={stopWalking}
+            onTouchStart={() => startWalking('up')}
+            onTouchEnd={stopWalking}
+          >up</button>
+        </div>
 
-        <button
-          onMouseDown={() => startWalking('left')}
-          onMouseUp={stopWalking}
-          onMouseLeave={stopWalking}
-          onTouchStart={() => startWalking('left')}
-          onTouchEnd={stopWalking}
-        >left</button>
+        <div className='app__button app__button--left'>
+          <Asset asset={assetButton} position={[0, 0]} tile={[17, 4]} />
+          <button
+            style={styleButton}
+            onMouseDown={() => startWalking('left')}
+            onMouseUp={stopWalking}
+            onMouseLeave={stopWalking}
+            onTouchStart={() => startWalking('left')}
+            onTouchEnd={stopWalking}
+          >left</button>
+        </div>
 
-        <button
-          onMouseDown={() => startWalking('right')}
-          onMouseUp={stopWalking}
-          onMouseLeave={stopWalking}
-          onTouchStart={() => startWalking('right')}
-          onTouchEnd={stopWalking}
-        >right</button>
+        <div className='app__button app__button--right'>
+          <Asset asset={assetButton} position={[0, 0]} tile={[17, 4]} />
+          <button
+            style={styleButton}
+            onMouseDown={() => startWalking('right')}
+            onMouseUp={stopWalking}
+            onMouseLeave={stopWalking}
+            onTouchStart={() => startWalking('right')}
+            onTouchEnd={stopWalking}
+          >right</button>
+        </div>
 
-        <button
-          onMouseDown={() => startWalking('down')}
-          onMouseUp={stopWalking}
-          onMouseLeave={stopWalking}
-          onTouchStart={() => startWalking('down')}
-          onTouchEnd={stopWalking}
-        >down</button>
+        <div className='app__button app__button--down'>
+          <Asset asset={assetButton} position={[0, 0]} tile={[17, 4]} />
+          <button
+            style={styleButton}
+            onMouseDown={() => startWalking('down')}
+            onMouseUp={stopWalking}
+            onMouseLeave={stopWalking}
+            onTouchStart={() => startWalking('down')}
+            onTouchEnd={stopWalking}
+          >down</button>
+        </div>
 
-        <button
-          onClick={() => handleClickA()}
-        >a</button>
+        <div className='app__button app__button--a'>
+          <Asset asset={assetButton} position={[0, 0]} tile={[17, 4]} />
+          <button
+            style={styleButton}
+            onClick={() => handleClickA()}
+          >a</button>
+        </div>
+
+        <div className='app__button app__button--b'>
+          <Asset asset={assetButton} position={[0, 0]} tile={[17, 4]} />
+          <button
+            style={styleButton}
+            onClick={() => handleClickA()}
+          >b</button>
+        </div>
       </div>
 
       <div style={{
@@ -150,8 +184,12 @@ function App() {
           calc(50% - (var(--tile-size) / 2) + ${coordinate[1] * -1}px)
         )`,
       }}>
-        <AssetMultiple asset={assetGround} position={data.ground.position} tile={data.ground.tile} zIndex={-99} />
-        <ObjectTree treeState={treeState} />
+        {isDebugging && (
+          <div>
+            <Guide tileDimension={[7, 9]} />
+            <AssetMultiple asset={''} position={data.wall.position} tile={data.wall.tile} />
+          </div>
+        )}
 
         <div style={{
           position: 'absolute',
@@ -161,18 +199,14 @@ function App() {
             calc(${coordinate[1]}px - (var(--tile-size) / 2))
           )`,
         }}>
-          <Asset asset={assetHero} position={[[0, 0]]} tile={[1, 1]} />
+          <Asset asset={assetHero} position={[0, 0]} tile={[1, 1]} />
           {isDebugging && (
             <div className='app__debug--hero'></div>
           )}
         </div>
 
-        {isDebugging && (
-          <div>
-            <Guide tileDimension={[7, 9]} />
-            <AssetMultiple asset={''} position={data.wall.position} tile={data.wall.tile} />
-          </div>
-        )}
+        <AssetMultiple asset={assetGround} position={data.ground.position} tile={data.ground.tile} zIndex={-99} />
+        <ObjectTree treeState={treeState} />
       </div>
     </div>
   )
