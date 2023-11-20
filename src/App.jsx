@@ -110,7 +110,7 @@ function App() {
         <p>fruit: {inventory}</p>
       </div>
 
-      <div className='app__button--container'>
+      <div className='app__button--movement'>
         <div className='app__button app__button--up'>
           <Asset asset={assetButton} position={[0, 0]} tile={[17, 4]} />
           <button
@@ -158,7 +158,9 @@ function App() {
             onTouchEnd={stopWalking}
           >down</button>
         </div>
+      </div>
 
+      <div className='app__button--action'>
         <div className='app__button app__button--a'>
           <Asset asset={assetButton} position={[0, 0]} tile={[17, 4]} />
           <button
