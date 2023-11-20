@@ -17,6 +17,7 @@
 
 .app__status {
   position: absolute;
+  z-index: 999;
 }
 
 .app__button--movement {
