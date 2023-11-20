@@ -16,51 +16,16 @@ function App() {
   const [inventory, setInventory] = useState(parseInt(localStorage.getItem('fruit')) || 0)
   const [treeState, setTreeState] = useState(3)
   const [heroDirection, setHeroDirection] = useState([1, 1])
+  const [counter, setCounter] = useState(0)
+
   const walkingRef = useRef()
+  const counterRef = useRef()
+
   const coordinateTile = [Math.round(coordinate[0] / 80), Math.round(coordinate[1] / 80)]
   const styleButton = {
     width: 'var(--tile-size)',
     height: 'var(--tile-size)',
     opacity: isDebugging ? '0.5' : '0',
-  }
-
-  const startWalking = (direction) => {
-    walkingRef.current = setInterval(() => {
-      setCoordinate(previousCoordinate => {
-        switch (direction) {
-          case 'right':
-            setFacing('right')
-            return [previousCoordinate[0] + 1, previousCoordinate[1]]
-          case 'left':
-            setFacing('left')
-            return [previousCoordinate[0] - 1, previousCoordinate[1]]
-          case 'down':
-            setFacing('down')
-            return [previousCoordinate[0], previousCoordinate[1] + 1]
-          case 'up':
-            setFacing('up')
-            return [previousCoordinate[0], previousCoordinate[1] - 1]
-        }
-      })
-    }, 15)
-  }
-
-  const stopWalking = () => {
-    clearInterval(walkingRef.current)
-  }
-
-  const handleClickA = () => {
-    for (const treeFruit of data.treeFruit.position) {
-      if (
-        treeFruit[0] === coordinateTile[0] &&
-        treeFruit[1] === coordinateTile[1] &&
-        treeState > 0
-      ) {
-        setInventory(inventory + 1)
-        localStorage.setItem('fruit', inventory + 1)
-        setTreeState(treeState - 1)
-      }
-    }
   }
 
   useEffect(() => {
@@ -84,18 +49,65 @@ function App() {
 
   useEffect(() => {
     if (facing === 'down') {
-      setHeroDirection([1, 1])
+      if (counter === 0) {
+        setHeroDirection([4, 1])
+      }
+      if (counter === 1) {
+        setHeroDirection([7, 1])
+      }
+      if (counter === 2) {
+        setHeroDirection([4, 1])
+      }
+      if (counter === 3) {
+        setHeroDirection([10, 1])
+      }
     }
+
     if (facing === 'up') {
-      setHeroDirection([1, 4])
+      if (counter === 0) {
+        setHeroDirection([4, 4])
+      }
+      if (counter === 1) {
+        setHeroDirection([7, 4])
+      }
+      if (counter === 2) {
+        setHeroDirection([4, 4])
+      }
+      if (counter === 3) {
+        setHeroDirection([10, 4])
+      }
     }
+
     if (facing === 'left') {
-      setHeroDirection([1, 7])
+      if (counter === 0) {
+        setHeroDirection([4, 7])
+      }
+      if (counter === 1) {
+        setHeroDirection([7, 7])
+      }
+      if (counter === 2) {
+        setHeroDirection([4, 7])
+      }
+      if (counter === 3) {
+        setHeroDirection([10, 7])
+      }
     }
+
     if (facing === 'right') {
-      setHeroDirection([1, 10])
+      if (counter === 0) {
+        setHeroDirection([4, 10])
+      }
+      if (counter === 1) {
+        setHeroDirection([7, 10])
+      }
+      if (counter === 2) {
+        setHeroDirection([4, 10])
+      }
+      if (counter === 3) {
+        setHeroDirection([10, 10])
+      }
     }
-  }, [facing])
+  }, [facing, counter])
 
   useEffect(() => {
     const handleKeyPress = (e) => {
@@ -111,13 +123,62 @@ function App() {
     }
   }, [])
 
+  const handleStartCounter = () => {
+    counterRef.current = setInterval(() => {
+      setCounter((prevCount) => (prevCount === 3 ? 0 : prevCount + 1))
+    }, 300);
+  }
+
+  const startWalking = (direction) => {
+    handleStartCounter()
+    walkingRef.current = setInterval(() => {
+      setCoordinate(previousCoordinate => {
+        switch (direction) {
+          case 'right':
+            setFacing('right')
+            return [previousCoordinate[0] + 1, previousCoordinate[1]]
+          case 'left':
+            setFacing('left')
+            return [previousCoordinate[0] - 1, previousCoordinate[1]]
+          case 'down':
+            setFacing('down')
+            return [previousCoordinate[0], previousCoordinate[1] + 1]
+          case 'up':
+            setFacing('up')
+            return [previousCoordinate[0], previousCoordinate[1] - 1]
+        }
+      })
+    }, 15)
+  }
+
+  const stopWalking = () => {
+    clearInterval(walkingRef.current)
+    clearInterval(counterRef.current)
+    setCounter(0)
+  }
+
+  const handleClickA = () => {
+    for (const treeFruit of data.treeFruit.position) {
+      if (
+        treeFruit[0] === coordinateTile[0] &&
+        treeFruit[1] === coordinateTile[1] &&
+        treeState > 0
+      ) {
+        setInventory(inventory + 1)
+        localStorage.setItem('fruit', inventory + 1)
+        setTreeState(treeState - 1)
+      }
+    }
+  }
+
   return (
     <div className='app'>
       {isDebugging && (
         <div className='app__debug'>
           {coordinate[0]}/{coordinate[1]}|
           {coordinateTile[0]}/{coordinateTile[1]}|
-          {facing}
+          {facing}/
+          {counter}
         </div>
       )}
 
