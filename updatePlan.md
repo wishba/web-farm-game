@@ -1,0 +1,5 @@
+-   character look at the movement direction
+-   status font
+-   bgm
+-   control with keyboard
+-   intro screen
