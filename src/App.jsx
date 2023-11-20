@@ -15,6 +15,7 @@ function App() {
   const [facing, setFacing] = useState('down')
   const [inventory, setInventory] = useState(parseInt(localStorage.getItem('fruit')) || 0)
   const [treeState, setTreeState] = useState(3)
+  const [heroDirection, setHeroDirection] = useState([1, 1])
   const walkingRef = useRef()
   const coordinateTile = [Math.round(coordinate[0] / 80), Math.round(coordinate[1] / 80)]
   const styleButton = {
@@ -80,6 +81,21 @@ function App() {
       }
     }
   }, [coordinate])
+
+  useEffect(() => {
+    if (facing === 'down') {
+      setHeroDirection([1, 1])
+    }
+    if (facing === 'up') {
+      setHeroDirection([1, 4])
+    }
+    if (facing === 'left') {
+      setHeroDirection([1, 7])
+    }
+    if (facing === 'right') {
+      setHeroDirection([1, 10])
+    }
+  }, [facing])
 
   useEffect(() => {
     const handleKeyPress = (e) => {
@@ -201,7 +217,7 @@ function App() {
             calc(${coordinate[1]}px - (var(--tile-size) / 2))
           )`,
         }}>
-          <Asset asset={assetHero} position={[0, 0]} tile={[1, 1]} />
+          <Asset asset={assetHero} position={[0, 0]} tile={heroDirection} />
           {isDebugging && (
             <div className='app__debug--hero'></div>
           )}
