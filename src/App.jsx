@@ -50,7 +50,9 @@ function App() {
   useEffect(() => {
     if (facing === 'down') {
       if (counter === 0) {
-        setHeroDirection([4, 1])
+        setTimeout(() => {
+          setHeroDirection([1, 1])
+        }, 500);
       }
       if (counter === 1) {
         setHeroDirection([7, 1])
@@ -61,11 +63,16 @@ function App() {
       if (counter === 3) {
         setHeroDirection([10, 1])
       }
+      if (counter === 4) {
+        setHeroDirection([4, 1])
+      }
     }
 
     if (facing === 'up') {
       if (counter === 0) {
-        setHeroDirection([4, 4])
+        setTimeout(() => {
+          setHeroDirection([1, 4])
+        }, 500);
       }
       if (counter === 1) {
         setHeroDirection([7, 4])
@@ -76,11 +83,16 @@ function App() {
       if (counter === 3) {
         setHeroDirection([10, 4])
       }
+      if (counter === 4) {
+        setHeroDirection([4, 4])
+      }
     }
 
     if (facing === 'left') {
       if (counter === 0) {
-        setHeroDirection([4, 7])
+        setTimeout(() => {
+          setHeroDirection([1, 7])
+        }, 500);
       }
       if (counter === 1) {
         setHeroDirection([7, 7])
@@ -91,11 +103,16 @@ function App() {
       if (counter === 3) {
         setHeroDirection([10, 7])
       }
+      if (counter === 4) {
+        setHeroDirection([4, 7])
+      }
     }
 
     if (facing === 'right') {
       if (counter === 0) {
-        setHeroDirection([4, 10])
+        setTimeout(() => {
+          setHeroDirection([1, 10])
+        }, 500);
       }
       if (counter === 1) {
         setHeroDirection([7, 10])
@@ -105,6 +122,9 @@ function App() {
       }
       if (counter === 3) {
         setHeroDirection([10, 10])
+      }
+      if (counter === 4) {
+        setHeroDirection([4, 10])
       }
     }
   }, [facing, counter])
@@ -125,7 +145,7 @@ function App() {
 
   const handleStartCounter = () => {
     counterRef.current = setInterval(() => {
-      setCounter((prevCount) => (prevCount === 3 ? 0 : prevCount + 1))
+      setCounter((prevCount) => (prevCount === 4 ? 1 : prevCount + 1))
     }, 300);
   }
 
