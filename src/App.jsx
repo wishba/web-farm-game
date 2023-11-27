@@ -100,28 +100,27 @@ function App() {
         break;
     }
 
+    setCounter(4)
     counterRef.current = setInterval(() => {
       setCounter((prevCount) => (prevCount === 4 ? 1 : prevCount + 1))
     }, delayTime);
 
-    setTimeout(() => {
-      walkingRef.current = setInterval(() => {
-        setCoordinate(previousCoordinate => {
-          switch (direction) {
-            case 'right':
-              return [previousCoordinate[0] + 1, previousCoordinate[1]]
-            case 'left':
-              return [previousCoordinate[0] - 1, previousCoordinate[1]]
-            case 'down':
-              return [previousCoordinate[0], previousCoordinate[1] + 1]
-            case 'up':
-              return [previousCoordinate[0], previousCoordinate[1] - 1]
-            default:
-              break;
-          }
-        })
-      }, movementSpeed)
-    }, delayTime);
+    walkingRef.current = setInterval(() => {
+      setCoordinate(previousCoordinate => {
+        switch (direction) {
+          case 'right':
+            return [previousCoordinate[0] + 1, previousCoordinate[1]]
+          case 'left':
+            return [previousCoordinate[0] - 1, previousCoordinate[1]]
+          case 'down':
+            return [previousCoordinate[0], previousCoordinate[1] + 1]
+          case 'up':
+            return [previousCoordinate[0], previousCoordinate[1] - 1]
+          default:
+            break;
+        }
+      })
+    }, movementSpeed)
   }
 
   const stopWalking = () => {

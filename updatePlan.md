@@ -1,7 +1,7 @@
--   ~~character look at the movement direction~~
+-   ~~fix to be doing nothing if movement button are being click (not hold)~~
 -   ~~character movement animation~~
+-   ~~character look at the movement direction~~
 -   status font
 -   bgm
 -   control with keyboard
 -   intro screen
--   fix to be doing nothing if movement button are being click (not hold)
