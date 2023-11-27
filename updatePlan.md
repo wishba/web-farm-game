@@ -1,5 +1,7 @@
--   character look at the movement direction
+-   ~~character look at the movement direction~~
+-   ~~character movement animation~~
 -   status font
 -   bgm
 -   control with keyboard
 -   intro screen
+-   fix to be doing nothing if movement button are being click (not hold)
