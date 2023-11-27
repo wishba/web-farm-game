@@ -42,6 +42,8 @@ function App() {
               return [previousCoordinate[0], previousCoordinate[1] - 1]
             case 'up':
               return [previousCoordinate[0], previousCoordinate[1] + 1]
+            default:
+              break;
           }
         })
       }
@@ -49,84 +51,19 @@ function App() {
   }, [coordinate])
 
   useEffect(() => {
-    if (facing === 'down') {
-      if (counter === 0) {
-        setTimeout(() => {
-          setHeroDirection([1, 1])
-        }, delayTime);
-      }
-      if (counter === 1) {
-        setHeroDirection([7, 1])
-      }
-      if (counter === 2) {
-        setHeroDirection([4, 1])
-      }
-      if (counter === 3) {
-        setHeroDirection([10, 1])
-      }
-      if (counter === 4) {
-        setHeroDirection([4, 1])
-      }
+    const countFacing = {
+      'down': [[1, 1], [7, 1], [4, 1], [10, 1], [4, 1]],
+      'up': [[1, 4], [7, 4], [4, 4], [10, 4], [4, 4]],
+      'left': [[1, 7], [7, 7], [4, 7], [10, 7], [4, 7]],
+      'right': [[1, 10], [7, 10], [4, 10], [10, 10], [4, 10]]
     }
 
-    if (facing === 'up') {
-      if (counter === 0) {
-        setTimeout(() => {
-          setHeroDirection([1, 4])
-        }, delayTime);
-      }
-      if (counter === 1) {
-        setHeroDirection([7, 4])
-      }
-      if (counter === 2) {
-        setHeroDirection([4, 4])
-      }
-      if (counter === 3) {
-        setHeroDirection([10, 4])
-      }
-      if (counter === 4) {
-        setHeroDirection([4, 4])
-      }
-    }
-
-    if (facing === 'left') {
-      if (counter === 0) {
-        setTimeout(() => {
-          setHeroDirection([1, 7])
-        }, delayTime);
-      }
-      if (counter === 1) {
-        setHeroDirection([7, 7])
-      }
-      if (counter === 2) {
-        setHeroDirection([4, 7])
-      }
-      if (counter === 3) {
-        setHeroDirection([10, 7])
-      }
-      if (counter === 4) {
-        setHeroDirection([4, 7])
-      }
-    }
-
-    if (facing === 'right') {
-      if (counter === 0) {
-        setTimeout(() => {
-          setHeroDirection([1, 10])
-        }, delayTime);
-      }
-      if (counter === 1) {
-        setHeroDirection([7, 10])
-      }
-      if (counter === 2) {
-        setHeroDirection([4, 10])
-      }
-      if (counter === 3) {
-        setHeroDirection([10, 10])
-      }
-      if (counter === 4) {
-        setHeroDirection([4, 10])
-      }
+    if (counter === 0) {
+      setTimeout(() => {
+        setHeroDirection(countFacing[facing][0])
+      }, delayTime);
+    } else {
+      setHeroDirection(countFacing[facing][counter])
     }
   }, [facing, counter])
 
