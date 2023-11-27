@@ -21,6 +21,7 @@ function App() {
   const walkingRef = useRef()
   const counterRef = useRef()
 
+  const delayTime = 300
   const coordinateTile = [Math.round(coordinate[0] / 80), Math.round(coordinate[1] / 80)]
   const styleButton = {
     width: 'var(--tile-size)',
@@ -52,7 +53,7 @@ function App() {
       if (counter === 0) {
         setTimeout(() => {
           setHeroDirection([1, 1])
-        }, 500);
+        }, delayTime);
       }
       if (counter === 1) {
         setHeroDirection([7, 1])
@@ -72,7 +73,7 @@ function App() {
       if (counter === 0) {
         setTimeout(() => {
           setHeroDirection([1, 4])
-        }, 500);
+        }, delayTime);
       }
       if (counter === 1) {
         setHeroDirection([7, 4])
@@ -92,7 +93,7 @@ function App() {
       if (counter === 0) {
         setTimeout(() => {
           setHeroDirection([1, 7])
-        }, 500);
+        }, delayTime);
       }
       if (counter === 1) {
         setHeroDirection([7, 7])
@@ -112,7 +113,7 @@ function App() {
       if (counter === 0) {
         setTimeout(() => {
           setHeroDirection([1, 10])
-        }, 500);
+        }, delayTime);
       }
       if (counter === 1) {
         setHeroDirection([7, 10])
@@ -143,32 +144,46 @@ function App() {
     }
   }, [])
 
-  const handleStartCounter = () => {
+  const startWalking = (direction) => {
+    switch (direction) {
+      case 'right':
+        setFacing('right')
+        break;
+      case 'left':
+        setFacing('left')
+        break;
+      case 'up':
+        setFacing('up')
+        break;
+      case 'down':
+        setFacing('down')
+        break;
+      default:
+        break;
+    }
+
     counterRef.current = setInterval(() => {
       setCounter((prevCount) => (prevCount === 4 ? 1 : prevCount + 1))
-    }, 300);
-  }
+    }, delayTime);
 
-  const startWalking = (direction) => {
-    handleStartCounter()
-    walkingRef.current = setInterval(() => {
-      setCoordinate(previousCoordinate => {
-        switch (direction) {
-          case 'right':
-            setFacing('right')
-            return [previousCoordinate[0] + 1, previousCoordinate[1]]
-          case 'left':
-            setFacing('left')
-            return [previousCoordinate[0] - 1, previousCoordinate[1]]
-          case 'down':
-            setFacing('down')
-            return [previousCoordinate[0], previousCoordinate[1] + 1]
-          case 'up':
-            setFacing('up')
-            return [previousCoordinate[0], previousCoordinate[1] - 1]
-        }
-      })
-    }, 15)
+    setTimeout(() => {
+      walkingRef.current = setInterval(() => {
+        setCoordinate(previousCoordinate => {
+          switch (direction) {
+            case 'right':
+              return [previousCoordinate[0] + 1, previousCoordinate[1]]
+            case 'left':
+              return [previousCoordinate[0] - 1, previousCoordinate[1]]
+            case 'down':
+              return [previousCoordinate[0], previousCoordinate[1] + 1]
+            case 'up':
+              return [previousCoordinate[0], previousCoordinate[1] - 1]
+            default:
+              break;
+          }
+        })
+      }, 15)
+    }, delayTime);
   }
 
   const stopWalking = () => {
