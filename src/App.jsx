@@ -21,6 +21,7 @@ function App() {
   const walkingRef = useRef()
   const counterRef = useRef()
 
+  const movementSpeed = 15
   const delayTime = 300
   const coordinateTile = [Math.round(coordinate[0] / 80), Math.round(coordinate[1] / 80)]
   const styleButton = {
@@ -119,7 +120,7 @@ function App() {
               break;
           }
         })
-      }, 15)
+      }, movementSpeed)
     }, delayTime);
   }
 
