@@ -6,7 +6,11 @@ function Guide({ tileDimension }) {
 
   for (let indexY = 0; indexY < tileDimension[1]; indexY++) {
     for (let indexX = 0; indexX < tileDimension[0]; indexX++) {
-      guideArray.push(<div key={`${indexX} / ${indexY}`} className='guide__tile'>{indexX - Math.floor(tileDimension[0] / 2)}/{indexY - Math.floor(tileDimension[1] / 2)}</div>)
+      guideArray.push(<div key={`${indexX} / ${indexY}`} className='guide__tile'>
+        <p className='guide__coordinate'>
+          {indexX - Math.floor(tileDimension[0] / 2)}/{indexY - Math.floor(tileDimension[1] / 2)}
+        </p>
+      </div>)
     }
     guideArray.push(<br key={`key ${indexY}`} />)
   }

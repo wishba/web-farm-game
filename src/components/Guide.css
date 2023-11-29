@@ -12,3 +12,8 @@
   border: var(--border-size) solid rgba(255, 255, 255, 0.25);
   display: inline-block;
 }
+
+.guide__coordinate {
+  position: absolute;
+  font-size: calc(var(--tile-size) / 10);
+}
