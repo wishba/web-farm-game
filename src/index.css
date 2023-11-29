@@ -12,4 +12,5 @@
   box-sizing: border-box;
   font-family: 'Press Start 2P', cursive;
   font-size: calc(var(--tile-size) / 4);
+  user-select: none;
 }
