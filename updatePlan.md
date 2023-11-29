@@ -5,3 +5,5 @@
 -   bgm
 -   control with keyboard
 -   intro screen
+-   generate tree fruit
+-   button indicator
