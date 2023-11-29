@@ -134,18 +134,20 @@ function App() {
 
   return (
     <div className='app'>
-      {isDebugging && (
-        <div className='app__debug'>
-          {coordinate[0]}/{coordinate[1]}|
-          {coordinateTile[0]}/{coordinateTile[1]}|
-          {facing}/
-          {counter}
-        </div>
-      )}
-
       <div className='app__status'>
-        <p>inventory</p>
-        <p>fruit: {inventory}</p>
+        {isDebugging && (
+          <p>
+            [{coordinate[0]}/{coordinate[1]}]
+            [{coordinateTile[0]}/{coordinateTile[1]}]
+            [{facing}/{counter}]
+            <hr />
+          </p>
+        )}
+
+        <div>
+          <p>inventory</p>
+          <p>fruit: {inventory}</p>
+        </div>
       </div>
 
       <div className='app__button--movement'>
