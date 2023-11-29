@@ -30,6 +30,25 @@ function App() {
   const soundCollect = () => new Audio(assetCollectSound).play()
 
   useEffect(() => {
+    const handleKeyPress = (e) => {
+      if (e.key === '`') {
+        setIsDebugging((prev) => !prev)
+      }
+    }
+    window.addEventListener('keydown', handleKeyPress)
+
+    const handlePreventDefault = (e) => {
+      e.preventDefault()
+    }
+    document.addEventListener('contextmenu', handlePreventDefault)
+
+    return () => {
+      window.removeEventListener('keydown', handleKeyPress)
+      document.removeEventListener('contextmenu', handlePreventDefault)
+    }
+  }, [])
+
+  useEffect(() => {
     for (const wall of data.wall.position) {
       if (wall[0] === coordinateTile[0] && wall[1] === coordinateTile[1]) {
         setCoordinate(prevCoordinate => {
@@ -67,20 +86,6 @@ function App() {
       setHeroDirection(countFacing[facing][counter])
     }
   }, [facing, counter])
-
-  useEffect(() => {
-    const handleKeyPress = (e) => {
-      if (e.key === '`') {
-        setIsDebugging((prev) => !prev)
-      }
-    }
-
-    window.addEventListener('keydown', handleKeyPress)
-
-    return () => {
-      window.removeEventListener('keydown', handleKeyPress)
-    }
-  }, [])
 
   const startWalking = (direction) => {
     setCounter(4)
