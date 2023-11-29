@@ -29,7 +29,7 @@ function App() {
   const styleButton = {
     width: 'var(--tile-size)',
     height: 'var(--tile-size)',
-    opacity: isDebugging ? '0.5' : '0',
+    opacity: '0',
   }
   const soundWalking = () => new Audio(assetWalkingSound).play()
   const soundCollect = () => new Audio(assetCollectSound).play()
@@ -164,6 +164,7 @@ function App() {
             onTouchStart={() => startWalking('up')}
             onTouchEnd={stopWalking}
           >up</button>
+          <p className='app__button--indicator app__arrow--up'>&uarr;</p>
         </div>
 
         <div className='app__button app__button--left'>
@@ -176,6 +177,7 @@ function App() {
             onTouchStart={() => startWalking('left')}
             onTouchEnd={stopWalking}
           >left</button>
+          <p className='app__button--indicator app__arrow--left'>&uarr;</p>
         </div>
 
         <div className='app__button app__button--right'>
@@ -188,6 +190,7 @@ function App() {
             onTouchStart={() => startWalking('right')}
             onTouchEnd={stopWalking}
           >right</button>
+          <p className='app__button--indicator app__arrow--right'>&uarr;</p>
         </div>
 
         <div className='app__button app__button--down'>
@@ -200,6 +203,7 @@ function App() {
             onTouchStart={() => startWalking('down')}
             onTouchEnd={stopWalking}
           >down</button>
+          <p className='app__button--indicator app__arrow--down'>&uarr;</p>
         </div>
       </div>
 
@@ -210,6 +214,7 @@ function App() {
             style={styleButton}
             onClick={() => handleClickA()}
           >a</button>
+          <p className='app__button--indicator'>a</p>
         </div>
 
         <div className='app__button app__button--b'>
@@ -218,6 +223,7 @@ function App() {
             style={styleButton}
             onClick={() => handleClickA()}
           >b</button>
+          <p className='app__button--indicator'>b</p>
         </div>
       </div>
 

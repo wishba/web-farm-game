@@ -18,6 +18,7 @@
 .app__status {
   position: absolute;
   z-index: 999;
+  color: #5c4e92;
 }
 
 .app__button--movement {
@@ -36,9 +37,34 @@
   display: grid;
 }
 
+.app__button--indicator {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #818b83;
+}
+
 .app__button {
+  position: relative;
   height: var(--tile-size);
   width: var(--tile-size);
+}
+
+.app__arrow--up {
+  transform: translate(-50%, -50%);
+}
+
+.app__arrow--left {
+  transform: translate(-50%, -50%) rotate(-90deg);
+}
+
+.app__arrow--right {
+  transform: translate(-50%, -50%) rotate(90deg);
+}
+
+.app__arrow--down {
+  transform: translate(-50%, -50%) rotate(180deg);
 }
 
 .app__button--up {
