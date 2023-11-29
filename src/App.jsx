@@ -83,23 +83,6 @@ function App() {
   }, [])
 
   const startWalking = (direction) => {
-    switch (direction) {
-      case 'right':
-        setFacing('right')
-        break;
-      case 'left':
-        setFacing('left')
-        break;
-      case 'up':
-        setFacing('up')
-        break;
-      case 'down':
-        setFacing('down')
-        break;
-      default:
-        break;
-    }
-
     setCounter(4)
     counterRef.current = setInterval(() => {
       setCounter((prevCount) => (prevCount === 4 ? 1 : prevCount + 1))
@@ -109,12 +92,16 @@ function App() {
       setCoordinate(previousCoordinate => {
         switch (direction) {
           case 'right':
+            setFacing('right')
             return [previousCoordinate[0] + 1, previousCoordinate[1]]
           case 'left':
+            setFacing('left')
             return [previousCoordinate[0] - 1, previousCoordinate[1]]
           case 'down':
+            setFacing('down')
             return [previousCoordinate[0], previousCoordinate[1] + 1]
           case 'up':
+            setFacing('up')
             return [previousCoordinate[0], previousCoordinate[1] - 1]
           default:
             break;
