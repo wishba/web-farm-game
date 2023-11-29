@@ -26,11 +26,6 @@ function App() {
   const movementSpeed = 15
   const delayTime = 300
   const coordinateTile = [Math.round(coordinate[0] / 80), Math.round(coordinate[1] / 80)]
-  const styleButton = {
-    width: 'var(--tile-size)',
-    height: 'var(--tile-size)',
-    opacity: '0',
-  }
   const soundWalking = () => new Audio(assetWalkingSound).play()
   const soundCollect = () => new Audio(assetCollectSound).play()
 
@@ -156,74 +151,62 @@ function App() {
       <div className='app__button--movement'>
         <div className='app__button app__button--up'>
           <Asset asset={assetButton} position={[0, 0]} tile={[17, 4]} />
-          <button
-            style={styleButton}
+          <p className='app__button--indicator app__arrow--up'
             onMouseDown={() => startWalking('up')}
             onMouseUp={stopWalking}
             onMouseLeave={stopWalking}
             onTouchStart={() => startWalking('up')}
             onTouchEnd={stopWalking}
-          >up</button>
-          <p className='app__button--indicator app__arrow--up'>&uarr;</p>
+          >&uarr;</p>
         </div>
 
         <div className='app__button app__button--left'>
           <Asset asset={assetButton} position={[0, 0]} tile={[17, 4]} />
-          <button
-            style={styleButton}
+          <p className='app__button--indicator app__arrow--left'
             onMouseDown={() => startWalking('left')}
             onMouseUp={stopWalking}
             onMouseLeave={stopWalking}
             onTouchStart={() => startWalking('left')}
             onTouchEnd={stopWalking}
-          >left</button>
-          <p className='app__button--indicator app__arrow--left'>&uarr;</p>
+          >&uarr;</p>
         </div>
 
         <div className='app__button app__button--right'>
           <Asset asset={assetButton} position={[0, 0]} tile={[17, 4]} />
-          <button
-            style={styleButton}
+          <p className='app__button--indicator app__arrow--right'
             onMouseDown={() => startWalking('right')}
             onMouseUp={stopWalking}
             onMouseLeave={stopWalking}
             onTouchStart={() => startWalking('right')}
             onTouchEnd={stopWalking}
-          >right</button>
-          <p className='app__button--indicator app__arrow--right'>&uarr;</p>
+          >&uarr;</p>
         </div>
 
         <div className='app__button app__button--down'>
           <Asset asset={assetButton} position={[0, 0]} tile={[17, 4]} />
-          <button
-            style={styleButton}
+          <p className='app__button--indicator app__arrow--down'
             onMouseDown={() => startWalking('down')}
             onMouseUp={stopWalking}
             onMouseLeave={stopWalking}
             onTouchStart={() => startWalking('down')}
             onTouchEnd={stopWalking}
-          >down</button>
-          <p className='app__button--indicator app__arrow--down'>&uarr;</p>
+          >&uarr;</p>
         </div>
       </div>
 
       <div className='app__button--action'>
         <div className='app__button app__button--a'>
           <Asset asset={assetButton} position={[0, 0]} tile={[17, 4]} />
-          <button
-            style={styleButton}
+          <p className='app__button--indicator'
             onClick={() => handleClickA()}
-          >a</button>
-          <p className='app__button--indicator'>a</p>
+          >a</p>
         </div>
 
         <div className='app__button app__button--b'>
           <Asset asset={assetButton} position={[0, 0]} tile={[17, 4]} />
-          <button
-            style={styleButton}
+          <p className='app__button--indicator'
             onClick={() => handleClickA()}
-          >b</button>
-          <p className='app__button--indicator'>b</p>
+          >b</p>
         </div>
       </div>
 
