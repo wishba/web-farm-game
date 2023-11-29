@@ -1,12 +1,14 @@
 import './App.css'
+import { useEffect, useRef, useState } from 'react'
+import assetHero from './assets/Basic Character Sprite sheet.png'
+import assetGround from './assets/Grass.png'
+import assetButton from './assets/Sprite sheet for Basic Pack.png'
+import assetWalkingSound from './assets/Bubble heavy 1.wav'
+import assetCollectSound from './assets/Fruit collect 1.wav'
 import data from './data/data.json'
 import Guide from './components/Guide'
 import Asset from './components/Asset'
 import AssetMultiple from './components/AssetMultiple'
-import assetHero from './assets/Basic Character Sprite sheet.png'
-import assetGround from './assets/Grass.png'
-import assetButton from './assets/Sprite sheet for Basic Pack.png'
-import { useEffect, useRef, useState } from 'react'
 import ObjectTree from './components/ObjectTree'
 
 function App() {
@@ -29,20 +31,22 @@ function App() {
     height: 'var(--tile-size)',
     opacity: isDebugging ? '0.5' : '0',
   }
+  const soundWalking = () => new Audio(assetWalkingSound).play()
+  const soundCollect = () => new Audio(assetCollectSound).play()
 
   useEffect(() => {
     for (const wall of data.wall.position) {
       if (wall[0] === coordinateTile[0] && wall[1] === coordinateTile[1]) {
-        setCoordinate(previousCoordinate => {
+        setCoordinate(prevCoordinate => {
           switch (facing) {
             case 'right':
-              return [previousCoordinate[0] - 1, previousCoordinate[1]]
+              return [prevCoordinate[0] - 1, prevCoordinate[1]]
             case 'left':
-              return [previousCoordinate[0] + 1, previousCoordinate[1]]
+              return [prevCoordinate[0] + 1, prevCoordinate[1]]
             case 'down':
-              return [previousCoordinate[0], previousCoordinate[1] - 1]
+              return [prevCoordinate[0], prevCoordinate[1] - 1]
             case 'up':
-              return [previousCoordinate[0], previousCoordinate[1] + 1]
+              return [prevCoordinate[0], prevCoordinate[1] + 1]
             default:
               break;
           }
@@ -62,6 +66,7 @@ function App() {
     if (counter === 0) {
       setTimeout(() => {
         setHeroDirection(countFacing[facing][0])
+        soundWalking()
       }, delayTime);
     } else {
       setHeroDirection(countFacing[facing][counter])
@@ -86,23 +91,24 @@ function App() {
     setCounter(4)
     counterRef.current = setInterval(() => {
       setCounter((prevCount) => (prevCount === 4 ? 1 : prevCount + 1))
+      soundWalking()
     }, delayTime);
 
     walkingRef.current = setInterval(() => {
-      setCoordinate(previousCoordinate => {
+      setCoordinate(prevCoordinate => {
         switch (direction) {
           case 'right':
             setFacing('right')
-            return [previousCoordinate[0] + 1, previousCoordinate[1]]
+            return [prevCoordinate[0] + 1, prevCoordinate[1]]
           case 'left':
             setFacing('left')
-            return [previousCoordinate[0] - 1, previousCoordinate[1]]
+            return [prevCoordinate[0] - 1, prevCoordinate[1]]
           case 'down':
             setFacing('down')
-            return [previousCoordinate[0], previousCoordinate[1] + 1]
+            return [prevCoordinate[0], prevCoordinate[1] + 1]
           case 'up':
             setFacing('up')
-            return [previousCoordinate[0], previousCoordinate[1] - 1]
+            return [prevCoordinate[0], prevCoordinate[1] - 1]
           default:
             break;
         }
@@ -126,6 +132,7 @@ function App() {
         setInventory(inventory + 1)
         localStorage.setItem('fruit', inventory + 1)
         setTreeState(treeState - 1)
+        soundCollect()
       }
     }
   }
