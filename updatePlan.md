@@ -1,9 +1,11 @@
+-   ~~sound walk and collect~~
 -   ~~fix to be doing nothing if movement button are being click (not hold)~~
 -   ~~character movement animation~~
 -   ~~character look at the movement direction~~
 -   status font
--   bgm
 -   control with keyboard
 -   intro screen
 -   generate tree fruit
--   button indicator
+-   movement and action button indicator
+-   sound on and of button
+-   volume button
