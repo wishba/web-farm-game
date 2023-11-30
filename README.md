@@ -1,4 +1,4 @@
-# Play it at: https://wishba.itch.io/web-farm-game
+# Play it at: <a href="http://" target="_blank" rel="noopener noreferrer">https://wishba.itch.io/web-farm-game</a>
 
 <img src="screenshot.png">
 
