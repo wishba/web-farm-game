@@ -23,6 +23,7 @@ function App() {
   const walkingRef = useRef()
   const counterRef = useRef()
 
+  const fruitGenerateSpeed = 3000
   const movementSpeed = 15
   const delayTime = 300
   const coordinateTile = [Math.round(coordinate[0] / 80), Math.round(coordinate[1] / 80)]
@@ -86,6 +87,16 @@ function App() {
       setHeroDirection(countFacing[facing][counter])
     }
   }, [facing, counter])
+
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      if (treeState < 3) {
+        setTreeState((prevTreeState) => prevTreeState + 1)
+      }
+    }, fruitGenerateSpeed);
+
+    return () => clearInterval(intervalId)
+  }, [treeState])
 
   const startWalking = (direction) => {
     setCounter(4)
