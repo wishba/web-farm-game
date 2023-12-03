@@ -117,18 +117,22 @@ function App() {
     walkingRef.current = setInterval(() => {
       setCoordinate(prevCoordinate => {
         switch (direction) {
-          case 'right':
-            setFacing('right')
-            return [prevCoordinate[0] + 1, prevCoordinate[1]]
-          case 'left':
-            setFacing('left')
-            return [prevCoordinate[0] - 1, prevCoordinate[1]]
-          case 'down':
-            setFacing('down')
-            return [prevCoordinate[0], prevCoordinate[1] + 1]
           case 'up':
             setFacing('up')
+            setIsHoldUp(true)
             return [prevCoordinate[0], prevCoordinate[1] - 1]
+          case 'left':
+            setFacing('left')
+            setIsHoldLeft(true)
+            return [prevCoordinate[0] - 1, prevCoordinate[1]]
+          case 'right':
+            setFacing('right')
+            setIsHoldRight(true)
+            return [prevCoordinate[0] + 1, prevCoordinate[1]]
+          case 'down':
+            setFacing('down')
+            setIsHoldDown(true)
+            return [prevCoordinate[0], prevCoordinate[1] + 1]
           default:
             break;
         }
@@ -136,13 +140,40 @@ function App() {
     }, movementSpeed)
   }
 
-  const stopWalking = () => {
+  const stopWalking = (direction) => {
     clearInterval(walkingRef.current)
     clearInterval(counterRef.current)
     setCounter(0)
+    switch (direction) {
+      case 'up':
+        setIsHoldUp(false)
+        break;
+      case 'left':
+        setIsHoldLeft(false)
+        break;
+      case 'right':
+        setIsHoldRight(false)
+        break;
+      case 'down':
+        setIsHoldDown(false)
+        break;
+      default:
+        break;
+    }
   }
 
-  const handleClickA = () => {
+  const startAction = (action) => {
+    switch (action) {
+      case 'a':
+        setIsHoldA(true)
+        break;
+      case 'b':
+        setIsHoldB(true)
+        break;
+      default:
+        break;
+    }
+
     for (const treeFruit of data.treeFruit.position) {
       if (
         treeFruit[0] === coordinateTile[0] &&
@@ -154,6 +185,19 @@ function App() {
         setTreeState(treeState - 1)
         soundCollect()
       }
+    }
+  }
+
+  const stopAction = (action) => {
+    switch (action) {
+      case 'a':
+        setIsHoldA(false)
+        break;
+      case 'b':
+        setIsHoldB(false)
+        break;
+      default:
+        break;
     }
   }
 
@@ -179,104 +223,44 @@ function App() {
         <div className='app__button app__button--up'>
           {buttonFeedback(isHoldUp)}
           <button className='app__button--indicator app__arrow--up'
-            onMouseDown={() => {
-              startWalking('up')
-              setIsHoldUp(true)
-            }}
-            onMouseUp={() => {
-              stopWalking()
-              setIsHoldUp(false)
-            }}
-            onMouseLeave={() => {
-              stopWalking()
-              setIsHoldUp(false)
-            }}
-            onTouchStart={() => {
-              startWalking('up')
-              setIsHoldUp(true)
-            }}
-            onTouchEnd={() => {
-              stopWalking()
-              setIsHoldUp(false)
-            }}
+            onMouseDown={() => startWalking('up')}
+            onMouseUp={() => stopWalking('up')}
+            onMouseLeave={() => stopWalking('up')}
+            onTouchStart={() => startWalking('up')}
+            onTouchEnd={() => stopWalking('up')}
           >&uarr;</button>
         </div>
 
         <div className='app__button app__button--left'>
           {buttonFeedback(isHoldLeft)}
           <button className='app__button--indicator app__arrow--left'
-            onMouseDown={() => {
-              startWalking('left')
-              setIsHoldLeft(true)
-            }}
-            onMouseUp={() => {
-              stopWalking()
-              setIsHoldLeft(false)
-            }}
-            onMouseLeave={() => {
-              stopWalking()
-              setIsHoldLeft(false)
-            }}
-            onTouchStart={() => {
-              startWalking('left')
-              setIsHoldLeft(true)
-            }}
-            onTouchEnd={() => {
-              stopWalking()
-              setIsHoldLeft(false)
-            }}
+            onMouseDown={() => startWalking('left')}
+            onMouseUp={() => stopWalking('left')}
+            onMouseLeave={() => stopWalking('left')}
+            onTouchStart={() => startWalking('left')}
+            onTouchEnd={() => stopWalking('left')}
           >&uarr;</button>
         </div>
 
         <div className='app__button app__button--right'>
           {buttonFeedback(isHoldRight)}
           <button className='app__button--indicator app__arrow--right'
-            onMouseDown={() => {
-              startWalking('right')
-              setIsHoldRight(true)
-            }}
-            onMouseUp={() => {
-              stopWalking()
-              setIsHoldRight(false)
-            }}
-            onMouseLeave={() => {
-              stopWalking()
-              setIsHoldRight(false)
-            }}
-            onTouchStart={() => {
-              startWalking('right')
-              setIsHoldRight(true)
-            }}
-            onTouchEnd={() => {
-              stopWalking()
-              setIsHoldRight(false)
-            }}
+            onMouseDown={() => startWalking('right')}
+            onMouseUp={() => stopWalking('right')}
+            onMouseLeave={() => stopWalking('right')}
+            onTouchStart={() => startWalking('right')}
+            onTouchEnd={() => stopWalking('right')}
           >&uarr;</button>
         </div>
 
         <div className='app__button app__button--down'>
           {buttonFeedback(isHoldDown)}
           <button className='app__button--indicator app__arrow--down'
-            onMouseDown={() => {
-              startWalking('down')
-              setIsHoldDown(true)
-            }}
-            onMouseUp={() => {
-              stopWalking()
-              setIsHoldDown(false)
-            }}
-            onMouseLeave={() => {
-              stopWalking()
-              setIsHoldDown(false)
-            }}
-            onTouchStart={() => {
-              startWalking('down')
-              setIsHoldDown(true)
-            }}
-            onTouchEnd={() => {
-              stopWalking()
-              setIsHoldDown(false)
-            }}
+            onMouseDown={() => startWalking('down')}
+            onMouseUp={() => stopWalking('down')}
+            onMouseLeave={() => stopWalking('down')}
+            onTouchStart={() => startWalking('down')}
+            onTouchEnd={() => stopWalking('down')}
           >&uarr;</button>
         </div>
       </div>
@@ -285,46 +269,22 @@ function App() {
         <div className='app__button app__button--a'>
           {buttonFeedback(isHoldA)}
           <button className='app__button--indicator'
-            onMouseDown={() => {
-              handleClickA()
-              setIsHoldA(true)
-            }}
-            onMouseUp={() => {
-              setIsHoldA(false)
-            }}
-            onMouseLeave={() => {
-              setIsHoldA(false)
-            }}
-            onTouchStart={() => {
-              handleClickA()
-              setIsHoldA(true)
-            }}
-            onTouchEnd={() => {
-              setIsHoldA(false)
-            }}
+            onMouseDown={() => startAction('a')}
+            onMouseUp={() => stopAction('a')}
+            onMouseLeave={() => stopAction('a')}
+            onTouchStart={() => startAction('a')}
+            onTouchEnd={() => stopAction('a')}
           >a</button>
         </div>
 
         <div className='app__button app__button--b'>
           {buttonFeedback(isHoldB)}
           <button className='app__button--indicator'
-            onMouseDown={() => {
-              handleClickA()
-              setIsHoldB(true)
-            }}
-            onMouseUp={() => {
-              setIsHoldB(false)
-            }}
-            onMouseLeave={() => {
-              setIsHoldB(false)
-            }}
-            onTouchStart={() => {
-              handleClickA()
-              setIsHoldB(true)
-            }}
-            onTouchEnd={() => {
-              setIsHoldB(false)
-            }}
+            onMouseDown={() => startAction('b')}
+            onMouseUp={() => stopAction('b')}
+            onMouseLeave={() => stopAction('b')}
+            onTouchStart={() => startAction('b')}
+            onTouchEnd={() => stopAction('b')}
           >b</button>
         </div>
       </div>
