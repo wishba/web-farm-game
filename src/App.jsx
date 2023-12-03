@@ -19,6 +19,12 @@ function App() {
   const [treeState, setTreeState] = useState(3)
   const [heroDirection, setHeroDirection] = useState([1, 1])
   const [counter, setCounter] = useState(0)
+  const [isHoldUp, setIsHoldUp] = useState(false)
+  const [isHoldLeft, setIsHoldLeft] = useState(false)
+  const [isHoldRight, setIsHoldRight] = useState(false)
+  const [isHoldDown, setIsHoldDown] = useState(false)
+  const [isHoldA, setIsHoldA] = useState(false)
+  const [isHoldB, setIsHoldB] = useState(false)
 
   const walkingRef = useRef()
   const counterRef = useRef()
@@ -168,62 +174,178 @@ function App() {
 
       <div className='app__button--movement'>
         <div className='app__button app__button--up'>
-          <Asset asset={assetButton} position={[0, 0]} tile={[17, 4]} />
+          {isHoldUp ?
+            <Asset asset={assetButton} position={[0, 0]} tile={[18, 4]} />
+            :
+            <Asset asset={assetButton} position={[0, 0]} tile={[17, 4]} />
+          }
           <p className='app__button--indicator app__arrow--up'
-            onMouseDown={() => startWalking('up')}
-            onMouseUp={stopWalking}
-            onMouseLeave={stopWalking}
-            onTouchStart={() => startWalking('up')}
-            onTouchEnd={stopWalking}
+            onMouseDown={() => {
+              startWalking('up')
+              setIsHoldUp(true)
+            }}
+            onMouseUp={() => {
+              stopWalking()
+              setIsHoldUp(false)
+            }}
+            onMouseLeave={() => {
+              stopWalking()
+              setIsHoldUp(false)
+            }}
+            onTouchStart={() => {
+              startWalking('up')
+              setIsHoldUp(true)
+            }}
+            onTouchEnd={() => {
+              stopWalking()
+              setIsHoldUp(false)
+            }}
           >&uarr;</p>
         </div>
 
         <div className='app__button app__button--left'>
-          <Asset asset={assetButton} position={[0, 0]} tile={[17, 4]} />
+          {isHoldLeft ?
+            <Asset asset={assetButton} position={[0, 0]} tile={[18, 4]} />
+            :
+            <Asset asset={assetButton} position={[0, 0]} tile={[17, 4]} />
+          }
           <p className='app__button--indicator app__arrow--left'
-            onMouseDown={() => startWalking('left')}
-            onMouseUp={stopWalking}
-            onMouseLeave={stopWalking}
-            onTouchStart={() => startWalking('left')}
-            onTouchEnd={stopWalking}
+            onMouseDown={() => {
+              startWalking('left')
+              setIsHoldLeft(true)
+            }}
+            onMouseUp={() => {
+              stopWalking()
+              setIsHoldLeft(false)
+            }}
+            onMouseLeave={() => {
+              stopWalking()
+              setIsHoldLeft(false)
+            }}
+            onTouchStart={() => {
+              startWalking('left')
+              setIsHoldLeft(true)
+            }}
+            onTouchEnd={() => {
+              stopWalking()
+              setIsHoldLeft(false)
+            }}
           >&uarr;</p>
         </div>
 
         <div className='app__button app__button--right'>
-          <Asset asset={assetButton} position={[0, 0]} tile={[17, 4]} />
+          {isHoldRight ?
+            <Asset asset={assetButton} position={[0, 0]} tile={[18, 4]} />
+            :
+            <Asset asset={assetButton} position={[0, 0]} tile={[17, 4]} />
+          }
           <p className='app__button--indicator app__arrow--right'
-            onMouseDown={() => startWalking('right')}
-            onMouseUp={stopWalking}
-            onMouseLeave={stopWalking}
-            onTouchStart={() => startWalking('right')}
-            onTouchEnd={stopWalking}
+            onMouseDown={() => {
+              startWalking('right')
+              setIsHoldRight(true)
+            }}
+            onMouseUp={() => {
+              stopWalking()
+              setIsHoldRight(false)
+            }}
+            onMouseLeave={() => {
+              stopWalking()
+              setIsHoldRight(false)
+            }}
+            onTouchStart={() => {
+              startWalking('right')
+              setIsHoldRight(true)
+            }}
+            onTouchEnd={() => {
+              stopWalking()
+              setIsHoldRight(false)
+            }}
           >&uarr;</p>
         </div>
 
         <div className='app__button app__button--down'>
-          <Asset asset={assetButton} position={[0, 0]} tile={[17, 4]} />
+          {isHoldDown ?
+            <Asset asset={assetButton} position={[0, 0]} tile={[18, 4]} />
+            :
+            <Asset asset={assetButton} position={[0, 0]} tile={[17, 4]} />
+          }
           <p className='app__button--indicator app__arrow--down'
-            onMouseDown={() => startWalking('down')}
-            onMouseUp={stopWalking}
-            onMouseLeave={stopWalking}
-            onTouchStart={() => startWalking('down')}
-            onTouchEnd={stopWalking}
+            onMouseDown={() => {
+              startWalking('down')
+              setIsHoldDown(true)
+            }}
+            onMouseUp={() => {
+              stopWalking()
+              setIsHoldDown(false)
+            }}
+            onMouseLeave={() => {
+              stopWalking()
+              setIsHoldDown(false)
+            }}
+            onTouchStart={() => {
+              startWalking('down')
+              setIsHoldDown(true)
+            }}
+            onTouchEnd={() => {
+              stopWalking()
+              setIsHoldDown(false)
+            }}
           >&uarr;</p>
         </div>
       </div>
 
       <div className='app__button--action'>
         <div className='app__button app__button--a'>
-          <Asset asset={assetButton} position={[0, 0]} tile={[17, 4]} />
+          {isHoldA ?
+            <Asset asset={assetButton} position={[0, 0]} tile={[18, 4]} />
+            :
+            <Asset asset={assetButton} position={[0, 0]} tile={[17, 4]} />
+          }
           <p className='app__button--indicator'
-            onClick={() => handleClickA()}
+            onMouseDown={() => {
+              handleClickA()
+              setIsHoldA(true)
+            }}
+            onMouseUp={() => {
+              setIsHoldA(false)
+            }}
+            onMouseLeave={() => {
+              setIsHoldA(false)
+            }}
+            onTouchStart={() => {
+              handleClickA()
+              setIsHoldA(true)
+            }}
+            onTouchEnd={() => {
+              setIsHoldA(false)
+            }}
           >a</p>
         </div>
 
         <div className='app__button app__button--b'>
-          <Asset asset={assetButton} position={[0, 0]} tile={[17, 4]} />
+          {isHoldB ?
+            <Asset asset={assetButton} position={[0, 0]} tile={[18, 4]} />
+            :
+            <Asset asset={assetButton} position={[0, 0]} tile={[17, 4]} />
+          }
           <p className='app__button--indicator'
-            onClick={() => handleClickA()}
+            onMouseDown={() => {
+              handleClickA()
+              setIsHoldB(true)
+            }}
+            onMouseUp={() => {
+              setIsHoldB(false)
+            }}
+            onMouseLeave={() => {
+              setIsHoldB(false)
+            }}
+            onTouchStart={() => {
+              handleClickA()
+              setIsHoldB(true)
+            }}
+            onTouchEnd={() => {
+              setIsHoldB(false)
+            }}
           >b</p>
         </div>
       </div>
