@@ -35,6 +35,9 @@ function App() {
   const coordinateTile = [Math.round(coordinate[0] / 80), Math.round(coordinate[1] / 80)]
   const soundWalking = () => new Audio(assetWalkingSound).play()
   const soundCollect = () => new Audio(assetCollectSound).play()
+  const buttonFeedback = (condition) => (
+    <Asset asset={assetButton} position={[0, 0]} tile={condition ? [18, 4] : [17, 4]} />
+  )
 
   useEffect(() => {
     const handleKeyPress = (e) => {
@@ -174,11 +177,7 @@ function App() {
 
       <div className='app__button--movement'>
         <div className='app__button app__button--up'>
-          {isHoldUp ?
-            <Asset asset={assetButton} position={[0, 0]} tile={[18, 4]} />
-            :
-            <Asset asset={assetButton} position={[0, 0]} tile={[17, 4]} />
-          }
+          {buttonFeedback(isHoldUp)}
           <button className='app__button--indicator app__arrow--up'
             onMouseDown={() => {
               startWalking('up')
@@ -204,11 +203,7 @@ function App() {
         </div>
 
         <div className='app__button app__button--left'>
-          {isHoldLeft ?
-            <Asset asset={assetButton} position={[0, 0]} tile={[18, 4]} />
-            :
-            <Asset asset={assetButton} position={[0, 0]} tile={[17, 4]} />
-          }
+          {buttonFeedback(isHoldLeft)}
           <button className='app__button--indicator app__arrow--left'
             onMouseDown={() => {
               startWalking('left')
@@ -234,11 +229,7 @@ function App() {
         </div>
 
         <div className='app__button app__button--right'>
-          {isHoldRight ?
-            <Asset asset={assetButton} position={[0, 0]} tile={[18, 4]} />
-            :
-            <Asset asset={assetButton} position={[0, 0]} tile={[17, 4]} />
-          }
+          {buttonFeedback(isHoldRight)}
           <button className='app__button--indicator app__arrow--right'
             onMouseDown={() => {
               startWalking('right')
@@ -264,11 +255,7 @@ function App() {
         </div>
 
         <div className='app__button app__button--down'>
-          {isHoldDown ?
-            <Asset asset={assetButton} position={[0, 0]} tile={[18, 4]} />
-            :
-            <Asset asset={assetButton} position={[0, 0]} tile={[17, 4]} />
-          }
+          {buttonFeedback(isHoldDown)}
           <button className='app__button--indicator app__arrow--down'
             onMouseDown={() => {
               startWalking('down')
@@ -296,11 +283,7 @@ function App() {
 
       <div className='app__button--action'>
         <div className='app__button app__button--a'>
-          {isHoldA ?
-            <Asset asset={assetButton} position={[0, 0]} tile={[18, 4]} />
-            :
-            <Asset asset={assetButton} position={[0, 0]} tile={[17, 4]} />
-          }
+          {buttonFeedback(isHoldA)}
           <button className='app__button--indicator'
             onMouseDown={() => {
               handleClickA()
@@ -323,11 +306,7 @@ function App() {
         </div>
 
         <div className='app__button app__button--b'>
-          {isHoldB ?
-            <Asset asset={assetButton} position={[0, 0]} tile={[18, 4]} />
-            :
-            <Asset asset={assetButton} position={[0, 0]} tile={[17, 4]} />
-          }
+          {buttonFeedback(isHoldB)}
           <button className='app__button--indicator'
             onMouseDown={() => {
               handleClickA()
