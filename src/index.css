@@ -8,6 +8,8 @@
 
 * {
   margin: 0;
+  padding: 0;
+  border: 0;
   image-rendering: pixelated;
   box-sizing: border-box;
   font-family: 'Press Start 2P', cursive;
