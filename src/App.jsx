@@ -179,7 +179,7 @@ function App() {
             :
             <Asset asset={assetButton} position={[0, 0]} tile={[17, 4]} />
           }
-          <p className='app__button--indicator app__arrow--up'
+          <button className='app__button--indicator app__arrow--up'
             onMouseDown={() => {
               startWalking('up')
               setIsHoldUp(true)
@@ -200,7 +200,7 @@ function App() {
               stopWalking()
               setIsHoldUp(false)
             }}
-          >&uarr;</p>
+          >&uarr;</button>
         </div>
 
         <div className='app__button app__button--left'>
@@ -209,7 +209,7 @@ function App() {
             :
             <Asset asset={assetButton} position={[0, 0]} tile={[17, 4]} />
           }
-          <p className='app__button--indicator app__arrow--left'
+          <button className='app__button--indicator app__arrow--left'
             onMouseDown={() => {
               startWalking('left')
               setIsHoldLeft(true)
@@ -230,7 +230,7 @@ function App() {
               stopWalking()
               setIsHoldLeft(false)
             }}
-          >&uarr;</p>
+          >&uarr;</button>
         </div>
 
         <div className='app__button app__button--right'>
@@ -239,7 +239,7 @@ function App() {
             :
             <Asset asset={assetButton} position={[0, 0]} tile={[17, 4]} />
           }
-          <p className='app__button--indicator app__arrow--right'
+          <button className='app__button--indicator app__arrow--right'
             onMouseDown={() => {
               startWalking('right')
               setIsHoldRight(true)
@@ -260,7 +260,7 @@ function App() {
               stopWalking()
               setIsHoldRight(false)
             }}
-          >&uarr;</p>
+          >&uarr;</button>
         </div>
 
         <div className='app__button app__button--down'>
@@ -269,7 +269,7 @@ function App() {
             :
             <Asset asset={assetButton} position={[0, 0]} tile={[17, 4]} />
           }
-          <p className='app__button--indicator app__arrow--down'
+          <button className='app__button--indicator app__arrow--down'
             onMouseDown={() => {
               startWalking('down')
               setIsHoldDown(true)
@@ -290,7 +290,7 @@ function App() {
               stopWalking()
               setIsHoldDown(false)
             }}
-          >&uarr;</p>
+          >&uarr;</button>
         </div>
       </div>
 
@@ -301,7 +301,7 @@ function App() {
             :
             <Asset asset={assetButton} position={[0, 0]} tile={[17, 4]} />
           }
-          <p className='app__button--indicator'
+          <button className='app__button--indicator'
             onMouseDown={() => {
               handleClickA()
               setIsHoldA(true)
@@ -319,7 +319,7 @@ function App() {
             onTouchEnd={() => {
               setIsHoldA(false)
             }}
-          >a</p>
+          >a</button>
         </div>
 
         <div className='app__button app__button--b'>
@@ -328,7 +328,7 @@ function App() {
             :
             <Asset asset={assetButton} position={[0, 0]} tile={[17, 4]} />
           }
-          <p className='app__button--indicator'
+          <button className='app__button--indicator'
             onMouseDown={() => {
               handleClickA()
               setIsHoldB(true)
@@ -346,7 +346,7 @@ function App() {
             onTouchEnd={() => {
               setIsHoldB(false)
             }}
-          >b</p>
+          >b</button>
         </div>
       </div>
 
