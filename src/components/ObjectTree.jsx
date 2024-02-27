@@ -3,23 +3,23 @@ import data from '../data/data.json'
 import AssetMultiple from './AssetMultiple'
 import assetTree from '../assets/Basic Grass Biome things 1.png'
 
-function ObjectTree({ treeState }) {
+function ObjectTree({ status }) {
   let treeDataTop
   let treeDataBottom
 
-  if (treeState === 0) {
+  if (status === 0) {
     treeDataTop = data.treeTop0.tile
     treeDataBottom = data.treeBottom0.tile
   }
-  if (treeState === 1) {
+  if (status === 1) {
     treeDataTop = data.treeTop1.tile
     treeDataBottom = data.treeBottom1.tile
   }
-  if (treeState === 2) {
+  if (status === 2) {
     treeDataTop = data.treeTop2.tile
     treeDataBottom = data.treeBottom2.tile
   }
-  if (treeState === 3) {
+  if (status === 3) {
     treeDataTop = data.treeTop3.tile
     treeDataBottom = data.treeBottom3.tile
   }

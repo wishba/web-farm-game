@@ -16,7 +16,7 @@ function App() {
   const [coordinate, setCoordinate] = useState([0, 0])
   const [facing, setFacing] = useState('down')
   const [inventory, setInventory] = useState(parseInt(localStorage.getItem('fruit')) || 0)
-  const [treeState, setTreeState] = useState(3)
+  const [statusTree, setStatusTree] = useState(3)
   const [heroDirection, setHeroDirection] = useState([1, 1])
   const [counter, setCounter] = useState(0)
   const [isHoldUp, setIsHoldUp] = useState(false)
@@ -42,7 +42,7 @@ function App() {
   useEffect(() => {
     const handleKeyPress = (e) => {
       if (e.key === '`') {
-        setIsDebugging((prev) => !prev)
+        setIsDebugging((prevIsDebugging) => !prevIsDebugging)
       }
     }
     window.addEventListener('keydown', handleKeyPress)
@@ -99,13 +99,13 @@ function App() {
 
   useEffect(() => {
     const intervalId = setInterval(() => {
-      if (treeState < 3) {
-        setTreeState((prevTreeState) => prevTreeState + 1)
+      if (statusTree < 3) {
+        setStatusTree((prevStatusTree) => prevStatusTree + 1)
       }
     }, fruitGenerateSpeed);
 
     return () => clearInterval(intervalId)
-  }, [treeState])
+  }, [statusTree])
 
   const startWalking = (direction) => {
     setCounter(4)
@@ -178,11 +178,11 @@ function App() {
       if (
         treeFruit[0] === coordinateTile[0] &&
         treeFruit[1] === coordinateTile[1] &&
-        treeState > 0
+        statusTree > 0
       ) {
         setInventory(inventory + 1)
         localStorage.setItem('fruit', inventory + 1)
-        setTreeState(treeState - 1)
+        setStatusTree(statusTree - 1)
         soundCollect()
       }
     }
@@ -319,7 +319,7 @@ function App() {
         </div>
 
         <AssetMultiple asset={assetGround} position={data.ground.position} tile={data.ground.tile} zIndex={-99} />
-        <ObjectTree treeState={treeState} />
+        <ObjectTree status={statusTree} />
       </div>
     </div>
   )
