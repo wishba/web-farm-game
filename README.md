@@ -1,7 +1,7 @@
-# Play it at: <a href="http://" target="_blank" rel="noopener noreferrer">https://wishba.itch.io/web-farm-game</a>
+# Play it at: https://wishba.itch.io/pick-the-apples
 
-<img src="screenshot.png">
+![screenshot.png](screenshot.png)
 
-free asset that i use:
+Free assets that I use:
 https://cupnooble.itch.io/
 https://jdwasabi.itch.io/8-bit-16-bit-sound-effects-pack
