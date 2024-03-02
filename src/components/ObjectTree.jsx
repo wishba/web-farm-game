@@ -1,5 +1,5 @@
 import React from 'react'
-import data from '../data/data.json'
+import data from '../data/data.js'
 import AssetMultiple from './AssetMultiple'
 import assetTree from '../assets/Basic Grass Biome things 1.png'
 

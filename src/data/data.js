@@ -1,121 +1,121 @@
-{
-  "wall": {
-    "position": [
+const data = {
+  wall: {
+    position: [
       [-2, -1], [-1, -1], [0, -1], [1, -1], [2, -1], [3, -1],
-      [-2, 0],                                       [3, 0],
-      [-2, 1],                       [1, 1], [2, 1], [3, 1],
-      [-2, 2],                                       [3, 2],
-      [-2, 3],                                       [3, 3],
+      [-2, 0], /*                                   */[3, 0],
+      [-2, 1], /*                   */[1, 1], [2, 1], [3, 1],
+      [-2, 2], /*                                   */[3, 2],
+      [-2, 3], /*                                   */[3, 3],
       [-2, 4], [-1, 4], [0, 4], [1, 4], [2, 4], [3, 4]
     ],
-    "tile": []
+    tile: []
   },
 
-  "treeTop": {
-    "position": [
+  treeTop: {
+    position: [
       [1, 0], [2, 0]
     ],
-    "tile": [
+    tile: [
       [3, 0], [4, 0]
     ]
   },
 
-  "treeBottom": {
-    "position": [
+  treeBottom: {
+    position: [
       [1, 1], [2, 1]
     ],
-    "tile": [
+    tile: [
       [3, 1], [4, 1]
     ]
   },
 
-  "treeTop0": {
-    "position": [
+  treeTop0: {
+    position: [
       [1, 0], [2, 0]
     ],
-    "tile": [
+    tile: [
       [1, 0], [2, 0]
     ]
   },
 
-  "treeBottom0": {
-    "position": [
+  treeBottom0: {
+    position: [
       [1, 1], [2, 1]
     ],
-    "tile": [
+    tile: [
       [1, 1], [2, 1]
     ]
   },
 
-  "treeTop1": {
-    "position": [
+  treeTop1: {
+    position: [
       [1, 0], [2, 0]
     ],
-    "tile": [
+    tile: [
       [1, 0], [4, 0]
     ]
   },
 
-  "treeBottom1": {
-    "position": [
+  treeBottom1: {
+    position: [
       [1, 1], [2, 1]
     ],
-    "tile": [
+    tile: [
       [1, 1], [2, 1]
     ]
   },
 
-  "treeTop2": {
-    "position": [
+  treeTop2: {
+    position: [
       [1, 0], [2, 0]
     ],
-    "tile": [
+    tile: [
       [3, 0], [4, 0]
     ]
   },
 
-  "treeBottom2": {
-    "position": [
+  treeBottom2: {
+    position: [
       [1, 1], [2, 1]
     ],
-    "tile": [
+    tile: [
       [1, 1], [2, 1]
     ]
   },
 
-  "treeTop3": {
-    "position": [
+  treeTop3: {
+    position: [
       [1, 0], [2, 0]
     ],
-    "tile": [
+    tile: [
       [3, 0], [4, 0]
     ]
   },
 
-  "treeBottom3": {
-    "position": [
+  treeBottom3: {
+    position: [
       [1, 1], [2, 1]
     ],
-    "tile": [
+    tile: [
       [3, 1], [4, 1]
     ]
   },
 
-  "treeFruit": {
-    "position": [
+  treeFruit: {
+    position: [
       [1, 2], [2, 2]
     ],
-    "tile": []
+    tile: []
   },
-  
-  "ground": {
-    "position": [
+
+  ground: {
+    position: [
       [-1, 0], [0, 0], [1, 0], [2, 0],
       [-1, 1], [0, 1], [1, 1], [2, 1],
       [-1, 2], [0, 2], [1, 2], [2, 2],
       [-1, 3], [0, 3], [1, 3], [2, 3]
     ],
-    "tile": [
+    tile: [
       [1, 3], [2, 3], [2, 3], [3, 3],
       [1, 4], [2, 4], [2, 4], [3, 4],
       [1, 4], [2, 4], [2, 4], [3, 4],
@@ -123,3 +123,5 @@
     ]
   }
 }
+
+export default data;
