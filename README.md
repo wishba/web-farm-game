@@ -1,6 +1,6 @@
 # Play it at: https://wishba.itch.io/pick-the-apples
 
-![screenshot.png](screenshot.png)
+![screenshot-square.png](screenshot-square.png)
 
 Free assets that I use:
 https://cupnooble.itch.io/
