@@ -35,9 +35,6 @@ function App() {
   const coordinateTile = [Math.round(coordinate[0] / 80), Math.round(coordinate[1] / 80)]
   const soundWalking = () => new Audio(assetWalkingSound).play()
   const soundCollect = () => new Audio(assetCollectSound).play()
-  const buttonFeedback = (condition) => (
-    <Asset asset={assetButton} position={[0, 0]} tile={condition ? [18, 4] : [17, 4]} />
-  )
 
   useEffect(() => {
     const handleKeyPress = (e) => {
@@ -221,8 +218,9 @@ function App() {
 
       <div className='app__button--movement'>
         <div className='app__button app__button--up'>
-          {buttonFeedback(isHoldUp)}
+          <Asset asset={assetButton} position={[0, 0]} tile={isHoldUp ? [18, 4] : [17, 4]} />
           <button className='app__button--indicator app__arrow--up'
+            style={{ opacity: `${isDebugging ? '50%' : '0'}` }}
             onMouseDown={() => startWalking('up')}
             onMouseUp={() => stopWalking('up')}
             onMouseLeave={() => stopWalking('up')}
@@ -232,8 +230,9 @@ function App() {
         </div>
 
         <div className='app__button app__button--left'>
-          {buttonFeedback(isHoldLeft)}
+          <Asset asset={assetButton} position={[0, 0]} tile={isHoldLeft ? [18, 4] : [17, 4]} />
           <button className='app__button--indicator app__arrow--left'
+            style={{ opacity: `${isDebugging ? '50%' : '0'}` }}
             onMouseDown={() => startWalking('left')}
             onMouseUp={() => stopWalking('left')}
             onMouseLeave={() => stopWalking('left')}
@@ -243,8 +242,9 @@ function App() {
         </div>
 
         <div className='app__button app__button--right'>
-          {buttonFeedback(isHoldRight)}
+          <Asset asset={assetButton} position={[0, 0]} tile={isHoldRight ? [18, 4] : [17, 4]} />
           <button className='app__button--indicator app__arrow--right'
+            style={{ opacity: `${isDebugging ? '50%' : '0'}` }}
             onMouseDown={() => startWalking('right')}
             onMouseUp={() => stopWalking('right')}
             onMouseLeave={() => stopWalking('right')}
@@ -254,8 +254,9 @@ function App() {
         </div>
 
         <div className='app__button app__button--down'>
-          {buttonFeedback(isHoldDown)}
+          <Asset asset={assetButton} position={[0, 0]} tile={isHoldDown ? [18, 4] : [17, 4]} />
           <button className='app__button--indicator app__arrow--down'
+            style={{ opacity: `${isDebugging ? '50%' : '0'}` }}
             onMouseDown={() => startWalking('down')}
             onMouseUp={() => stopWalking('down')}
             onMouseLeave={() => stopWalking('down')}
@@ -267,8 +268,9 @@ function App() {
 
       <div className='app__button--action'>
         <div className='app__button app__button--a'>
-          {buttonFeedback(isHoldA)}
+          <Asset asset={assetButton} position={[0, 0]} tile={isHoldA ? [18, 4] : [17, 4]} />
           <button className='app__button--indicator'
+            style={{ opacity: `${isDebugging ? '50%' : '0'}` }}
             onMouseDown={() => startAction('a')}
             onMouseUp={() => stopAction('a')}
             onMouseLeave={() => stopAction('a')}
@@ -278,8 +280,9 @@ function App() {
         </div>
 
         <div className='app__button app__button--b'>
-          {buttonFeedback(isHoldB)}
+          <Asset asset={assetButton} position={[0, 0]} tile={isHoldB ? [18, 4] : [17, 4]} />
           <button className='app__button--indicator'
+            style={{ opacity: `${isDebugging ? '50%' : '0'}` }}
             onMouseDown={() => startAction('b')}
             onMouseUp={() => stopAction('b')}
             onMouseLeave={() => stopAction('b')}
