@@ -1,11 +1,11 @@
 import './App.css'
 import { useEffect, useRef, useState } from 'react'
+import data from './data/data.js'
 import assetHero from './assets/Basic Character Sprite sheet.png'
 import assetGround from './assets/Grass.png'
 import assetButton from './assets/Sprite sheet for Basic Pack.png'
 import assetWalkingSound from './assets/Bubble heavy 1.wav'
 import assetCollectSound from './assets/Fruit collect 1.wav'
-import data from './data/data.js'
 import Guide from './components/Guide'
 import Asset from './components/Asset'
 import AssetMultiple from './components/AssetMultiple'
@@ -177,7 +177,6 @@ function App() {
             [{coordinate[0]}/{coordinate[1]}]
             [{coordinateTile[0]}/{coordinateTile[1]}]
             [{facing}/{counter}]
-            <hr />
           </p>
         )}
 
