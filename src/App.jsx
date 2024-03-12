@@ -174,7 +174,7 @@ function App() {
     const stop = () => (props === 'a' || props === 'b') ? stopAction() : stopWalking()
 
     return (
-      <>
+      <div className={`app__button app__button--${props}`}>
         <Asset asset={assetButton} position={[0, 0]} tile={buttonHold === props ? [18, 4] : [17, 4]} />
         <button className={`app__button--indicator app__arrow--${props}`}
           style={{ opacity: `${isDebugging ? '50%' : '0'}` }}
@@ -186,7 +186,7 @@ function App() {
         >
           {props !== 'a' && props !== 'b' ? <>&uarr;</> : props}
         </button>
-      </>
+      </div>
     )
   }
 
@@ -208,15 +208,15 @@ function App() {
       </div>
 
       <div className='app__button--movement'>
-        <div className='app__button app__button--up'>{handleButton('up')}</div>
-        <div className='app__button app__button--left'>{handleButton('left')}</div>
-        <div className='app__button app__button--right'>{handleButton('right')}</div>
-        <div className='app__button app__button--down'>{handleButton('down')}</div>
+        {handleButton('up')}
+        {handleButton('left')}
+        {handleButton('right')}
+        {handleButton('down')}
       </div>
 
       <div className='app__button--action'>
-        <div className='app__button app__button--a'>{handleButton('a')}</div>
-        <div className='app__button app__button--b'>{handleButton('b')}</div>
+        {handleButton('a')}
+        {handleButton('b')}
       </div>
 
       <div style={{
