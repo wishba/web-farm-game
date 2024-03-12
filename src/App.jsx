@@ -169,6 +169,27 @@ function App() {
     setButtonHold('')
   }
 
+  const handleButton = (props) => {
+    const start = () => (props === 'a' || props === 'b') ? startAction(props) : startWalking(props)
+    const stop = () => (props === 'a' || props === 'b') ? stopAction() : stopWalking()
+
+    return (
+      <>
+        <Asset asset={assetButton} position={[0, 0]} tile={buttonHold === props ? [18, 4] : [17, 4]} />
+        <button className={`app__button--indicator app__arrow--${props}`}
+          style={{ opacity: `${isDebugging ? '50%' : '0'}` }}
+          onMouseDown={start}
+          onTouchStart={start}
+          onMouseUp={stop}
+          onMouseLeave={stop}
+          onTouchEnd={stop}
+        >
+          {props !== 'a' && props !== 'b' ? <>&uarr;</> : props}
+        </button>
+      </>
+    )
+  }
+
   return (
     <div className='app'>
       <div className='app__status'>
@@ -187,79 +208,15 @@ function App() {
       </div>
 
       <div className='app__button--movement'>
-        <div className='app__button app__button--up'>
-          <Asset asset={assetButton} position={[0, 0]} tile={buttonHold == 'up' ? [18, 4] : [17, 4]} />
-          <button className='app__button--indicator app__arrow--up'
-            style={{ opacity: `${isDebugging ? '50%' : '0'}` }}
-            onMouseDown={() => startWalking('up')}
-            onMouseUp={() => stopWalking()}
-            onMouseLeave={() => stopWalking()}
-            onTouchStart={() => startWalking('up')}
-            onTouchEnd={() => stopWalking()}
-          >&uarr;</button>
-        </div>
-
-        <div className='app__button app__button--left'>
-          <Asset asset={assetButton} position={[0, 0]} tile={buttonHold == 'left' ? [18, 4] : [17, 4]} />
-          <button className='app__button--indicator app__arrow--left'
-            style={{ opacity: `${isDebugging ? '50%' : '0'}` }}
-            onMouseDown={() => startWalking('left')}
-            onMouseUp={() => stopWalking()}
-            onMouseLeave={() => stopWalking()}
-            onTouchStart={() => startWalking('left')}
-            onTouchEnd={() => stopWalking()}
-          >&uarr;</button>
-        </div>
-
-        <div className='app__button app__button--right'>
-          <Asset asset={assetButton} position={[0, 0]} tile={buttonHold == 'right' ? [18, 4] : [17, 4]} />
-          <button className='app__button--indicator app__arrow--right'
-            style={{ opacity: `${isDebugging ? '50%' : '0'}` }}
-            onMouseDown={() => startWalking('right')}
-            onMouseUp={() => stopWalking()}
-            onMouseLeave={() => stopWalking()}
-            onTouchStart={() => startWalking('right')}
-            onTouchEnd={() => stopWalking()}
-          >&uarr;</button>
-        </div>
-
-        <div className='app__button app__button--down'>
-          <Asset asset={assetButton} position={[0, 0]} tile={buttonHold == 'down' ? [18, 4] : [17, 4]} />
-          <button className='app__button--indicator app__arrow--down'
-            style={{ opacity: `${isDebugging ? '50%' : '0'}` }}
-            onMouseDown={() => startWalking('down')}
-            onMouseUp={() => stopWalking()}
-            onMouseLeave={() => stopWalking()}
-            onTouchStart={() => startWalking('down')}
-            onTouchEnd={() => stopWalking()}
-          >&uarr;</button>
-        </div>
+        <div className='app__button app__button--up'>{handleButton('up')}</div>
+        <div className='app__button app__button--left'>{handleButton('left')}</div>
+        <div className='app__button app__button--right'>{handleButton('right')}</div>
+        <div className='app__button app__button--down'>{handleButton('down')}</div>
       </div>
 
       <div className='app__button--action'>
-        <div className='app__button app__button--a'>
-          <Asset asset={assetButton} position={[0, 0]} tile={buttonHold == 'a' ? [18, 4] : [17, 4]} />
-          <button className='app__button--indicator'
-            style={{ opacity: `${isDebugging ? '50%' : '0'}` }}
-            onMouseDown={() => startAction('a')}
-            onMouseUp={() => stopAction()}
-            onMouseLeave={() => stopAction()}
-            onTouchStart={() => startAction('a')}
-            onTouchEnd={() => stopAction()}
-          >a</button>
-        </div>
-
-        <div className='app__button app__button--b'>
-          <Asset asset={assetButton} position={[0, 0]} tile={buttonHold == 'b' ? [18, 4] : [17, 4]} />
-          <button className='app__button--indicator'
-            style={{ opacity: `${isDebugging ? '50%' : '0'}` }}
-            onMouseDown={() => startAction('b')}
-            onMouseUp={() => stopAction()}
-            onMouseLeave={() => stopAction()}
-            onTouchStart={() => startAction('b')}
-            onTouchEnd={() => stopAction()}
-          >b</button>
-        </div>
+        <div className='app__button app__button--a'>{handleButton('a')}</div>
+        <div className='app__button app__button--b'>{handleButton('b')}</div>
       </div>
 
       <div style={{
@@ -286,9 +243,7 @@ function App() {
           )`,
         }}>
           <Asset asset={assetHero} position={[0, 0]} tile={heroDirection} />
-          {isDebugging && (
-            <div className='app__debug--hero'></div>
-          )}
+          {isDebugging && (<div className='app__debug--hero'></div>)}
         </div>
 
         <AssetMultiple asset={assetGround} position={data.ground.position} tile={data.ground.tile} zIndex={-99} />
