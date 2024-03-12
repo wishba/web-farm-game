@@ -1,15 +1,14 @@
 import './App.css'
 import { useEffect, useRef, useState } from 'react'
 import data from './data/data.js'
-import assetHero from './assets/Basic Character Sprite sheet.png'
-import assetGround from './assets/Grass.png'
 import assetButton from './assets/Sprite sheet for Basic Pack.png'
 import assetWalkingSound from './assets/Bubble heavy 1.wav'
 import assetCollectSound from './assets/Fruit collect 1.wav'
-import Guide from './components/Guide'
 import Asset from './components/Asset'
-import AssetMultiple from './components/AssetMultiple'
 import ObjectTree from './components/ObjectTree'
+import ObjectGuide from './components/ObjectGuide.jsx'
+import ObjectGround from './components/ObjectGround.jsx'
+import ObjectHero from './components/ObjectHero.jsx'
 
 function App() {
   const [isDebugging, setIsDebugging] = useState(false)
@@ -193,18 +192,15 @@ function App() {
   return (
     <div className='app'>
       <div className='app__status'>
-        {isDebugging && (
+        {isDebugging &&
           <p>
             [{coordinate[0]}/{coordinate[1]}]
             [{coordinateTile[0]}/{coordinateTile[1]}]
             [{facing}/{counter}]
           </p>
-        )}
-
-        <div>
-          <p>inventory</p>
-          <p>fruit: {inventory}</p>
-        </div>
+        }
+        <p>inventory</p>
+        <p>fruit: {inventory}</p>
       </div>
 
       <div className='app__button--movement'>
@@ -227,27 +223,10 @@ function App() {
           calc(50% - (var(--tile-size) / 2) + ${coordinate[1] * -1}px)
         )`,
       }}>
-        {isDebugging && (
-          <div>
-            <Guide tileDimension={[7, 9]} />
-            <AssetMultiple asset={''} position={data.wall.position} tile={data.wall.tile} />
-          </div>
-        )}
-
-        <div style={{
-          position: 'absolute',
-          zIndex: '0',
-          transform: `translate(
-            ${coordinate[0]}px, 
-            calc(${coordinate[1]}px - (var(--tile-size) / 2))
-          )`,
-        }}>
-          <Asset asset={assetHero} position={[0, 0]} tile={heroDirection} />
-          {isDebugging && (<div className='app__debug--hero'></div>)}
-        </div>
-
-        <AssetMultiple asset={assetGround} position={data.ground.position} tile={data.ground.tile} zIndex={-99} />
+        {isDebugging && <ObjectGuide />}
+        <ObjectGround />
         <ObjectTree status={statusTree} />
+        <ObjectHero coordinate={coordinate} heroDirection={heroDirection} isDebugging={isDebugging} />
       </div>
     </div>
   )

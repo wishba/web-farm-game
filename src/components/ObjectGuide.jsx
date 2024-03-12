@@ -1,7 +1,10 @@
 import React from 'react'
-import './Guide.css'
+import './ObjectGuide.css'
+import data from '../data/data'
+import AssetMultiple from './AssetMultiple'
 
-function Guide({ tileDimension }) {
+function ObjectGuide() {
+  const tileDimension = [7, 9]
   const guideArray = []
 
   for (let indexY = 0; indexY < tileDimension[1]; indexY++) {
@@ -16,15 +19,18 @@ function Guide({ tileDimension }) {
   }
 
   return (
-    <div className='guide' style={{
-      transform: `
+    <>
+      <div className='guide' style={{
+        transform: `
         translate(
           calc(${Math.floor(tileDimension[0] / 2)} * var(--tile-size) * -1),
           calc(${Math.floor(tileDimension[1] / 2)} * var(--tile-size) * -1)
         )
       `
-    }}>{guideArray}</div>
+      }}>{guideArray}</div>
+      <AssetMultiple asset={''} position={data.wall.position} tile={data.wall.tile} />
+    </>
   )
 }
 
-export default Guide
+export default ObjectGuide
